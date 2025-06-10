@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NASDDDS Prompt Selector</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f4f7f9; }
+    .topbar { padding: 10px; background: #fff; border-bottom: 1px solid #ccc; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    input[type="text"], button { padding: 5px 10px; font-size: 14px; }
+    .container { display: flex; }
+    .main { flex: 1; padding: 10px; background: #fff; overflow:auto; }
+    .sidebar { width: 250px; padding: 10px; background: #fff; border-left: 1px solid #ccc; }
+    details { margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    summary { padding: 10px; cursor: pointer; font-weight: bold; background: #e9eff3; }
+    .accordion-content { padding: 10px; }
+    .select-all, .clear-all { margin-bottom: 10px; }
+    .subgroup strong { display: block; margin-top: 10px; font-weight: bold; }
+    .subgroup div { margin-left: 15px; }
+    .highlight { background: yellow; }
+    #summary { width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; resize: none; overflow: hidden; }
+    @media print {
+      body * { visibility: hidden; }
+      #summary, #summary * { visibility: visible; }
+      #summary { position: absolute; top: 0; left: 0; width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <label for="filterInput">Filter:</label>
+  <input type="text" id="filterInput" placeholder="Search...">
+  <button id="clearSearchBtn">Clear Search</button>
+  <button id="exportTextBtn">Export Text</button>
+  <button id="exportWordBtn">Export Word</button>
+  <button id="exportPdfBtn">Export PDF</button>
+</div>
+
+<div class="container">
+  <div class="main" id="accordion-container">
+    <!-- Dynamic accordion content injected here -->
+  </div>
+  <div class="sidebar">
+    <h2>Summary</h2>
+    <textarea id="summary" readonly></textarea>
+  </div>
+</div>
+
+<script>
+// Mock data for placeholder; replace with real content if needed
+const groupedData = {
+  "State Team Edition": {
+    "Vision & Leadership": ["How is employment reflected in the mission?", "What is the vision for integrated work?"],
+    "Funding": ["What investments support CIE?", "Are funding strategies aligned across systems?"]
+  },
+  "Provider Edition": {
+    "Staff Competency": ["What training supports frontline staff?", "How are competencies measured?"],
+    "Outcome Tracking": ["What data is used to improve services?"]
+  }
+};
+
+// Build accordion UI
+const accordion = document.getElementById("accordion-container");
+for (const [sheet, prompts] of Object.entries(groupedData)) {
+  const details = document.createElement("details");
+  details.classList.add("accordion");
+  const summary = document.createElement("summary");
+  summary.textContent = sheet;
+  details.appendChild(summary);
+  const content = document.createElement("div");
+  content.classList.add("accordion-content");
+
+  const selBtn = document.createElement("button");
+  selBtn.textContent = "Select All";
+  selBtn.className = "select-all";
+  content.appendChild(selBtn);
+
+  const clrBtn = document.createElement("button");
+  clrBtn.textContent = "Clear All";
+  clrBtn.className = "clear-all";
+  content.appendChild(clrBtn);
+
+  for (const [prompt, questions] of Object.entries(prompts)) {
+    const grp = document.createElement("div");
+    grp.classList.add("subgroup");
+    grp.innerHTML = `<strong>${prompt}</strong>`;
+    questions.forEach((q, i) => {
+      const id = `${sheet}_${prompt}_${i}`.replace(/\s+/g, "_");
+      grp.innerHTML += `<div><input type="checkbox" id="${id}" data-sheet="${sheet}" data-prompt="${prompt}" data-text="${q}"><label for="${id}"> ${q}</label></div>`;
+    });
+    content.appendChild(grp);
+  }
+
+  details.appendChild(content);
+  accordion.appendChild(details);
+}
+
+document.body.addEventListener("click", e => {
+  if (e.target.matches(".select-all") || e.target.matches(".clear-all")) {
+    const container = e.target.closest(".accordion-content");
+    const cbs = container.querySelectorAll("input[type='checkbox']");
+    cbs.forEach(cb => cb.checked = e.target.matches(".select-all"));
+    updateSummary();
+  }
+  if (e.target.id === "clearSearchBtn") {
+    filterInput.value = "";
+    applyFilter();
+  }
+  if (e.target.id === "exportTextBtn") exportText();
+  if (e.target.id === "exportWordBtn") exportWord();
+  if (e.target.id === "exportPdfBtn") window.print();
+});
+
+document.body.addEventListener("change", e => {
+  if (e.target.matches("input[type='checkbox']")) updateSummary();
+});
+
+const filterInput = document.getElementById("filterInput");
+filterInput.addEventListener("input", applyFilter);
+
+function applyFilter() {
+  const term = filterInput.value.trim().toLowerCase();
+  document.querySelectorAll("details.accordion").forEach(det => {
+    let any = false;
+    det.querySelectorAll("input[type='checkbox']").forEach(cb => {
+      const label = det.querySelector("label[for='" + cb.id + "']");
+      const text = cb.dataset.text.toLowerCase();
+      const show = !term || text.includes(term);
+      cb.parentElement.style.display = show ? "" : "none";
+      label.classList.toggle("highlight", term && text.includes(term));
+      if (show) any = true;
+    });
+    det.style.display = any || !term ? "" : "none";
+  });
+  updateSummary();
+}
+
+function updateSummary() {
+  const checked = [...document.querySelectorAll("input[type='checkbox']:checked")];
+  const groups = {};
+  checked.forEach(cb => {
+    const s = cb.dataset.sheet, p = cb.dataset.prompt, t = cb.dataset.text;
+    groups[s] = groups[s] || {};
+    groups[s][p] = groups[s][p] || [];
+    groups[s][p].push(t);
+  });
+  let out = "";
+  Object.entries(groups).forEach(([s, prompts]) => {
+    out += "--- " + s + " ---\n";
+    Object.entries(prompts).forEach(([p, arr]) => {
+      out += "  • " + p + "\n";
+      arr.forEach(q => out += "    – " + q + "\n");
+      out += "\n";
+    });
+  });
+  const summary = document.getElementById("summary");
+  summary.value = out.trim();
+  summary.style.height = "auto";
+  summary.style.height = summary.scrollHeight + "px";
+}
+
+function exportText() {
+  const blob = new Blob([document.getElementById("summary").value], {type: "text/plain"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "selected_questions.txt";
+  a.click();
+}
+
+function exportWord() {
+  const content = document.getElementById("summary").value.replace(/\n/g, "<br>");
+  const blob = new Blob(["<html><body>" + content + "</body></html>"], {type: "application/msword"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "selected_questions.doc";
+  a.click();
+}
+
+applyFilter();
+updateSummary();
+</script>
+
+</body>
+</html>
