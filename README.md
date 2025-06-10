@@ -13,6 +13,6 @@ This repository contains an interactive HTML tool for selecting, filtering, and 
 To view this tool live online:
 1. Go to your repository Settings → Pages
 2. Set the source to `main` branch, `/ (root)`
-3. Visit: `https://<your-username>.github.io/<repository-name>/`
+3. Visit: `https://yelsewesley.github.io/nasddds-selector/`
 
 © NASDDDS — For internal use by state partners and the SELN community.
