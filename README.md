@@ -28,7 +28,7 @@ You can host this tool via GitHub Pages:
 2. Go to your repo’s **Settings** → **Pages**
 3. Under “Source,” choose `main` branch and `/ (root)`
 4. Your tool will be live at:  
-   `https://your-username.github.io/your-repo-name`
+   https://yelsewesley.github.io/nasddds-selector/NASDDDS_Selector_Final.html
 
 ## 📁 Contents
 
