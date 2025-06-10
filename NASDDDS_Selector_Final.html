@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NASDDDS Prompt Selector</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f4f7f9; color: #2c3e50; font-size: 15px; }
+    .topbar { position: sticky; top: 0; background: #f4f7f9; border-bottom: 1px solid #ccc; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; z-index:1000; }
+    .controls { display: flex; gap:8px; align-items:center; }
+    input[type="text"]{ width:200px; padding:6px 8px; font-size:14px; border:1px solid #ccc; border-radius:4px; }
+    button{ padding:6px 12px; font-size:14px; background:#006699; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+    button:hover{ background:#004466; }
+    .container{ display:flex; flex-wrap:wrap; min-height:calc(100vh - 40px); }
+    .main{ flex:1; max-width:80%; padding:10px 20px; overflow-y:auto; }
+    .sidebar{ width:20%; padding:20px; background:#fff; border-left:1px solid #ccc; position:sticky; top:40px; min-height:calc(100vh - 40px); overflow-y:auto; }
+    details.accordion{ background:#fff; border-radius:4px; margin-bottom:10px; box-shadow:0 2px 4px rgba(0,0,0,0.05); }
+    summary.accordion-header{ padding:15px; font-weight:bold; cursor:pointer; background:#e9eff3; border: none; list-style: none; }
+    .select-all, .clear-all{ margin-bottom:10px; display:inline-block; }
+    .subgroup{ margin-bottom:15px; }
+    .subgroup strong{ display:block; margin-bottom:5px; color:#34495e; }
+    .sidebar textarea{ width:100%; min-height:150px; padding:10px; font-size:15px; border:1px solid #ccc; border-radius:4px; resize:none; overflow:hidden; }
+    .counter{ margin-top:10px; font-weight:bold; }
+    .highlight{ background:#fff3cd; border-radius:3px; }
+    @media (max-width:768px){
+      .container{ flex-wrap:wrap; }
+      .main, .sidebar{ width:100%; max-width:100%; }
+      .sidebar{ border-left:none; border-top:1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Prompt Selector – NASDDDS</h1>
+    <div class="controls">
+      <label for="filterInput">Filter:</label>
+      <input type="text" id="filterInput" placeholder="Type to search…">
+      <button id="exportTextBtn">Export Text</button>
+      <button id="exportDocBtn">Export Word</button>
+      <button id="clearAllGlobal">Clear All</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="main">
+      <div style="margin-bottom:20px;background:#eef5fa;border-left:4px solid #006699;padding:10px;">
+        <strong>How to Use:</strong><br>Search to filter. Tap header to expand/collapse. Use Select All/Clear All. Selections appear in sidebar.
+      </div>
+<details class="accordion">
+  <summary class="accordion-header">State Team</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Vision and Shared Purpose</strong>
+      <div><input type="checkbox" id="State_Team_Vision_and_Shared_Purpose_0" data-sheet="State Team" data-prompt="Vision and Shared Purpose" data-text="How have your employment goals evolved over time?"><label for="State_Team_Vision_and_Shared_Purpose_0"> How have your employment goals evolved over time?</label></div>
+      <div><input type="checkbox" id="State_Team_Vision_and_Shared_Purpose_1" data-sheet="State Team" data-prompt="Vision and Shared Purpose" data-text="How well are these goals reflected in our team’s priorities or actions?"><label for="State_Team_Vision_and_Shared_Purpose_1"> How well are these goals reflected in our team’s priorities or actions?</label></div>
+      <div><input type="checkbox" id="State_Team_Vision_and_Shared_Purpose_2" data-sheet="State Team" data-prompt="Vision and Shared Purpose" data-text="What voices have helped shape our understanding of these goals?"><label for="State_Team_Vision_and_Shared_Purpose_2"> What voices have helped shape our understanding of these goals?</label></div>
+      <div><input type="checkbox" id="State_Team_Vision_and_Shared_Purpose_3" data-sheet="State Team" data-prompt="Vision and Shared Purpose" data-text="What’s one question your team should explore next around employment goals?"><label for="State_Team_Vision_and_Shared_Purpose_3"> What’s one question your team should explore next around employment goals?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Leadership Support</strong>
+      <div><input type="checkbox" id="State_Team_Leadership_Support_0" data-sheet="State Team" data-prompt="Leadership Support" data-text="What leadership actions are helping move employment efforts forward-and where might adjustments be needed?"><label for="State_Team_Leadership_Support_0"> What leadership actions are helping move employment efforts forward-and where might adjustments be needed?</label></div>
+      <div><input type="checkbox" id="State_Team_Leadership_Support_1" data-sheet="State Team" data-prompt="Leadership Support" data-text="How are staff, partners, and stakeholders at different levels given opportunities to lead or shape employment work?"><label for="State_Team_Leadership_Support_1"> How are staff, partners, and stakeholders at different levels given opportunities to lead or shape employment work?</label></div>
+      <div><input type="checkbox" id="State_Team_Leadership_Support_2" data-sheet="State Team" data-prompt="Leadership Support" data-text="What messages from leadership are shaping our work?"><label for="State_Team_Leadership_Support_2"> What messages from leadership are shaping our work?</label></div>
+      <div><input type="checkbox" id="State_Team_Leadership_Support_3" data-sheet="State Team" data-prompt="Leadership Support" data-text="How do you create space to share failures as part of learning?"><label for="State_Team_Leadership_Support_3"> How do you create space to share failures as part of learning?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding & Incentives</strong>
+      <div><input type="checkbox" id="State_Team_Funding_&_Incentives_0" data-sheet="State Team" data-prompt="Funding & Incentives" data-text="What activites and patterns are our funding structures encouraging or discouraging?"><label for="State_Team_Funding_&_Incentives_0"> What activites and patterns are our funding structures encouraging or discouraging?</label></div>
+      <div><input type="checkbox" id="State_Team_Funding_&_Incentives_1" data-sheet="State Team" data-prompt="Funding & Incentives" data-text="Where are financial incentives aligned-or misaligned-with our goals?"><label for="State_Team_Funding_&_Incentives_1"> Where are financial incentives aligned-or misaligned-with our goals?</label></div>
+      <div><input type="checkbox" id="State_Team_Funding_&_Incentives_2" data-sheet="State Team" data-prompt="Funding & Incentives" data-text="How do you gather and use insights about how funding is influencing employment outcomes?"><label for="State_Team_Funding_&_Incentives_2"> How do you gather and use insights about how funding is influencing employment outcomes?</label></div>
+      <div><input type="checkbox" id="State_Team_Funding_&_Incentives_3" data-sheet="State Team" data-prompt="Funding & Incentives" data-text="How do we define accountability in ways that support learning, not punishment?"><label for="State_Team_Funding_&_Incentives_3"> How do we define accountability in ways that support learning, not punishment?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Interagency Collaboration</strong>
+      <div><input type="checkbox" id="State_Team_Interagency_Collaboration_0" data-sheet="State Team" data-prompt="Interagency Collaboration" data-text="Where are we seeing true collaboration across systems?"><label for="State_Team_Interagency_Collaboration_0"> Where are we seeing true collaboration across systems?</label></div>
+      <div><input type="checkbox" id="State_Team_Interagency_Collaboration_1" data-sheet="State Team" data-prompt="Interagency Collaboration" data-text="What helps collaboration work-and where does it get stuck?"><label for="State_Team_Interagency_Collaboration_1"> What helps collaboration work-and where does it get stuck?</label></div>
+      <div><input type="checkbox" id="State_Team_Interagency_Collaboration_2" data-sheet="State Team" data-prompt="Interagency Collaboration" data-text="How do shared goals show up (or not) across agencies?"><label for="State_Team_Interagency_Collaboration_2"> How do shared goals show up (or not) across agencies?</label></div>
+      <div><input type="checkbox" id="State_Team_Interagency_Collaboration_3" data-sheet="State Team" data-prompt="Interagency Collaboration" data-text="Who do you wish were at the table more often?"><label for="State_Team_Interagency_Collaboration_3"> Who do you wish were at the table more often?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Provider Capacity & Support</strong>
+      <div><input type="checkbox" id="State_Team_Provider_Capacity_&_Support_0" data-sheet="State Team" data-prompt="Provider Capacity & Support" data-text="What are we hearing from providers about their needs or strengths?"><label for="State_Team_Provider_Capacity_&_Support_0"> What are we hearing from providers about their needs or strengths?</label></div>
+      <div><input type="checkbox" id="State_Team_Provider_Capacity_&_Support_1" data-sheet="State Team" data-prompt="Provider Capacity & Support" data-text="Where are we providing support that’s meaningful-and where are we missing?"><label for="State_Team_Provider_Capacity_&_Support_1"> Where are we providing support that’s meaningful-and where are we missing?</label></div>
+      <div><input type="checkbox" id="State_Team_Provider_Capacity_&_Support_2" data-sheet="State Team" data-prompt="Provider Capacity & Support" data-text="How do providers experience our guidance or expectations?"><label for="State_Team_Provider_Capacity_&_Support_2"> How do providers experience our guidance or expectations?</label></div>
+      <div><input type="checkbox" id="State_Team_Provider_Capacity_&_Support_3" data-sheet="State Team" data-prompt="Provider Capacity & Support" data-text="Who is doing excellent work?"><label for="State_Team_Provider_Capacity_&_Support_3"> Who is doing excellent work?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Innovation & Risk-Taking</strong>
+      <div><input type="checkbox" id="State_Team_Innovation_&_Risk-Taking_0" data-sheet="State Team" data-prompt="Innovation & Risk-Taking" data-text="What’s a recent example of your system trying something new?"><label for="State_Team_Innovation_&_Risk-Taking_0"> What’s a recent example of your system trying something new?</label></div>
+      <div><input type="checkbox" id="State_Team_Innovation_&_Risk-Taking_1" data-sheet="State Team" data-prompt="Innovation & Risk-Taking" data-text="What conditions helped that innovation happen?"><label for="State_Team_Innovation_&_Risk-Taking_1"> What conditions helped that innovation happen?</label></div>
+      <div><input type="checkbox" id="State_Team_Innovation_&_Risk-Taking_2" data-sheet="State Team" data-prompt="Innovation & Risk-Taking" data-text="What is the state’s role in supporting innovation?"><label for="State_Team_Innovation_&_Risk-Taking_2"> What is the state’s role in supporting innovation?</label></div>
+      <div><input type="checkbox" id="State_Team_Innovation_&_Risk-Taking_3" data-sheet="State Team" data-prompt="Innovation & Risk-Taking" data-text="What barriers or fears need to be acknowledged before trying new things?"><label for="State_Team_Innovation_&_Risk-Taking_3"> What barriers or fears need to be acknowledged before trying new things?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Measurement, Learning, and Impact</strong>
+      <div><input type="checkbox" id="State_Team_Measurement,_Learning,_and_Impact_0" data-sheet="State Team" data-prompt="Measurement, Learning, and Impact" data-text="What data do people in your system trust and use? What’s missing?"><label for="State_Team_Measurement,_Learning,_and_Impact_0"> What data do people in your system trust and use? What’s missing?</label></div>
+      <div><input type="checkbox" id="State_Team_Measurement,_Learning,_and_Impact_1" data-sheet="State Team" data-prompt="Measurement, Learning, and Impact" data-text="How are we using data to spark reflection, not just report outcomes?"><label for="State_Team_Measurement,_Learning,_and_Impact_1"> How are we using data to spark reflection, not just report outcomes?</label></div>
+      <div><input type="checkbox" id="State_Team_Measurement,_Learning,_and_Impact_2" data-sheet="State Team" data-prompt="Measurement, Learning, and Impact" data-text="What insights are we learning from both bright spots and breakdowns?"><label for="State_Team_Measurement,_Learning,_and_Impact_2"> What insights are we learning from both bright spots and breakdowns?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Looking Ahead</strong>
+      <div><input type="checkbox" id="State_Team_Looking_Ahead_0" data-sheet="State Team" data-prompt="Looking Ahead" data-text="What part of your system feels most ready for growth or change?"><label for="State_Team_Looking_Ahead_0"> What part of your system feels most ready for growth or change?</label></div>
+      <div><input type="checkbox" id="State_Team_Looking_Ahead_1" data-sheet="State Team" data-prompt="Looking Ahead" data-text="What assumptions are you or your team ready to question?"><label for="State_Team_Looking_Ahead_1"> What assumptions are you or your team ready to question?</label></div>
+      <div><input type="checkbox" id="State_Team_Looking_Ahead_2" data-sheet="State Team" data-prompt="Looking Ahead" data-text="What conversations do you want to be in next?"><label for="State_Team_Looking_Ahead_2"> What conversations do you want to be in next?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Self-Guided</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Vision & Strategic Goals (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Vision_&_Strategic_Goals_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Vision & Strategic Goals (Retreat Workbook)" data-text="What does employment success look like across our system?"><label for="Self-Guided_Vision_&_Strategic_Goals_(Retreat_Workbook)_0"> What does employment success look like across our system?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Vision_&_Strategic_Goals_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Vision & Strategic Goals (Retreat Workbook)" data-text="How do different stakeholders experience our goals?"><label for="Self-Guided_Vision_&_Strategic_Goals_(Retreat_Workbook)_1"> How do different stakeholders experience our goals?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Vision_&_Strategic_Goals_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Vision & Strategic Goals (Retreat Workbook)" data-text="What adjustments might make our goals more inclusive and actionable?"><label for="Self-Guided_Vision_&_Strategic_Goals_(Retreat_Workbook)_2"> What adjustments might make our goals more inclusive and actionable?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Leadership & Culture (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Leadership_&_Culture_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Leadership & Culture (Retreat Workbook)" data-text="What behaviors or messages from leaders reinforce employment as a priority?"><label for="Self-Guided_Leadership_&_Culture_(Retreat_Workbook)_0"> What behaviors or messages from leaders reinforce employment as a priority?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Leadership_&_Culture_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Leadership & Culture (Retreat Workbook)" data-text="Where do we see leadership driving momentum-or unintentionally slowing it?"><label for="Self-Guided_Leadership_&_Culture_(Retreat_Workbook)_1"> Where do we see leadership driving momentum-or unintentionally slowing it?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Leadership_&_Culture_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Leadership & Culture (Retreat Workbook)" data-text="What kind of leadership do we want to model at all levels?"><label for="Self-Guided_Leadership_&_Culture_(Retreat_Workbook)_2"> What kind of leadership do we want to model at all levels?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Financing & Accountability (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Financing_&_Accountability_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Financing & Accountability (Retreat Workbook)" data-text="What are our funding structures telling us we value?"><label for="Self-Guided_Financing_&_Accountability_(Retreat_Workbook)_0"> What are our funding structures telling us we value?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Financing_&_Accountability_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Financing & Accountability (Retreat Workbook)" data-text="Where is there alignment or misalignment between funding and outcomes?"><label for="Self-Guided_Financing_&_Accountability_(Retreat_Workbook)_1"> Where is there alignment or misalignment between funding and outcomes?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Financing_&_Accountability_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Financing & Accountability (Retreat Workbook)" data-text="How do we define accountability in ways that support learning, not punishment?"><label for="Self-Guided_Financing_&_Accountability_(Retreat_Workbook)_2"> How do we define accountability in ways that support learning, not punishment?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Collaboration Across Systems (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Collaboration_Across_Systems_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Collaboration Across Systems (Retreat Workbook)" data-text="Where are we seeing true collaboration-and how did it start?"><label for="Self-Guided_Collaboration_Across_Systems_(Retreat_Workbook)_0"> Where are we seeing true collaboration-and how did it start?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Collaboration_Across_Systems_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Collaboration Across Systems (Retreat Workbook)" data-text="How are we showing up as good partners?"><label for="Self-Guided_Collaboration_Across_Systems_(Retreat_Workbook)_1"> How are we showing up as good partners?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Collaboration_Across_Systems_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Collaboration Across Systems (Retreat Workbook)" data-text="What’s one partnership we could strengthen this year?"><label for="Self-Guided_Collaboration_Across_Systems_(Retreat_Workbook)_2"> What’s one partnership we could strengthen this year?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Workforce & Provider Support (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Workforce_&_Provider_Support_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Workforce & Provider Support (Retreat Workbook)" data-text="What support helps providers deliver great employment services?"><label for="Self-Guided_Workforce_&_Provider_Support_(Retreat_Workbook)_0"> What support helps providers deliver great employment services?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Workforce_&_Provider_Support_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Workforce & Provider Support (Retreat Workbook)" data-text="Where do staff feel equipped-and where do they feel stuck?"><label for="Self-Guided_Workforce_&_Provider_Support_(Retreat_Workbook)_1"> Where do staff feel equipped-and where do they feel stuck?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Workforce_&_Provider_Support_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Workforce & Provider Support (Retreat Workbook)" data-text="What kind of learning environment are we cultivating?"><label for="Self-Guided_Workforce_&_Provider_Support_(Retreat_Workbook)_2"> What kind of learning environment are we cultivating?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Innovation & Emerging Practices (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Innovation_&_Emerging_Practices_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Innovation & Emerging Practices (Retreat Workbook)" data-text="Where are people trying new things that support employment?"><label for="Self-Guided_Innovation_&_Emerging_Practices_(Retreat_Workbook)_0"> Where are people trying new things that support employment?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Innovation_&_Emerging_Practices_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Innovation & Emerging Practices (Retreat Workbook)" data-text="How can we make space for experimentation while staying grounded in purpose?"><label for="Self-Guided_Innovation_&_Emerging_Practices_(Retreat_Workbook)_1"> How can we make space for experimentation while staying grounded in purpose?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Innovation_&_Emerging_Practices_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Innovation & Emerging Practices (Retreat Workbook)" data-text="How do we lift up success stories that reflect creativity and inclusion?"><label for="Self-Guided_Innovation_&_Emerging_Practices_(Retreat_Workbook)_2"> How do we lift up success stories that reflect creativity and inclusion?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Learning from Data (Retreat Workbook)</strong>
+      <div><input type="checkbox" id="Self-Guided_Learning_from_Data_(Retreat_Workbook)_0" data-sheet="Self-Guided" data-prompt="Learning from Data (Retreat Workbook)" data-text="What story is our data telling us about employment?"><label for="Self-Guided_Learning_from_Data_(Retreat_Workbook)_0"> What story is our data telling us about employment?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Learning_from_Data_(Retreat_Workbook)_1" data-sheet="Self-Guided" data-prompt="Learning from Data (Retreat Workbook)" data-text="How do we use data to guide-not dictate-strategy?"><label for="Self-Guided_Learning_from_Data_(Retreat_Workbook)_1"> How do we use data to guide-not dictate-strategy?</label></div>
+      <div><input type="checkbox" id="Self-Guided_Learning_from_Data_(Retreat_Workbook)_2" data-sheet="Self-Guided" data-prompt="Learning from Data (Retreat Workbook)" data-text="What are we learning from our bright spots and our gaps?"><label for="Self-Guided_Learning_from_Data_(Retreat_Workbook)_2"> What are we learning from our bright spots and our gaps?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Provider</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Service Vision & Goals</strong>
+      <div><input type="checkbox" id="Provider_Service_Vision_&_Goals_0" data-sheet="Provider" data-prompt="Service Vision & Goals" data-text="What guides your agency’s approach to supporting community-based employment?"><label for="Provider_Service_Vision_&_Goals_0"> What guides your agency’s approach to supporting community-based employment?</label></div>
+      <div><input type="checkbox" id="Provider_Service_Vision_&_Goals_1" data-sheet="Provider" data-prompt="Service Vision & Goals" data-text="Where does your agency feel most aligned-or misaligned-with state goals?"><label for="Provider_Service_Vision_&_Goals_1"> Where does your agency feel most aligned-or misaligned-with state goals?</label></div>
+      <div><input type="checkbox" id="Provider_Service_Vision_&_Goals_2" data-sheet="Provider" data-prompt="Service Vision & Goals" data-text="What do you wish others understood about your work?"><label for="Provider_Service_Vision_&_Goals_2"> What do you wish others understood about your work?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Leadership & Agency Support</strong>
+      <div><input type="checkbox" id="Provider_Leadership_&_Agency_Support_0" data-sheet="Provider" data-prompt="Leadership & Agency Support" data-text="How is leadership at your organization prioritizing employment?"><label for="Provider_Leadership_&_Agency_Support_0"> How is leadership at your organization prioritizing employment?</label></div>
+      <div><input type="checkbox" id="Provider_Leadership_&_Agency_Support_1" data-sheet="Provider" data-prompt="Leadership & Agency Support" data-text="Where are you seeing leadership remove barriers or model solutions?"><label for="Provider_Leadership_&_Agency_Support_1"> Where are you seeing leadership remove barriers or model solutions?</label></div>
+      <div><input type="checkbox" id="Provider_Leadership_&_Agency_Support_2" data-sheet="Provider" data-prompt="Leadership & Agency Support" data-text="What helps staff feel confident and supported in this work?"><label for="Provider_Leadership_&_Agency_Support_2"> What helps staff feel confident and supported in this work?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding & Incentives</strong>
+      <div><input type="checkbox" id="Provider_Funding_&_Incentives_0" data-sheet="Provider" data-prompt="Funding & Incentives" data-text="How do funding structures influence the services you provide?"><label for="Provider_Funding_&_Incentives_0"> How do funding structures influence the services you provide?</label></div>
+      <div><input type="checkbox" id="Provider_Funding_&_Incentives_1" data-sheet="Provider" data-prompt="Funding & Incentives" data-text="What funding challenges make it hard to do the right work?"><label for="Provider_Funding_&_Incentives_1"> What funding challenges make it hard to do the right work?</label></div>
+      <div><input type="checkbox" id="Provider_Funding_&_Incentives_2" data-sheet="Provider" data-prompt="Funding & Incentives" data-text="Where have incentives or guidance supported innovation?"><label for="Provider_Funding_&_Incentives_2"> Where have incentives or guidance supported innovation?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Partnership with State Agencies</strong>
+      <div><input type="checkbox" id="Provider_Partnership_with_State_Agencies_0" data-sheet="Provider" data-prompt="Partnership with State Agencies" data-text="What partnerships (e.g., with state agencies, VR, schools) are working well?"><label for="Provider_Partnership_with_State_Agencies_0"> What partnerships (e.g., with state agencies, VR, schools) are working well?</label></div>
+      <div><input type="checkbox" id="Provider_Partnership_with_State_Agencies_1" data-sheet="Provider" data-prompt="Partnership with State Agencies" data-text="What collaboration challenges are you facing?"><label for="Provider_Partnership_with_State_Agencies_1"> What collaboration challenges are you facing?</label></div>
+      <div><input type="checkbox" id="Provider_Partnership_with_State_Agencies_2" data-sheet="Provider" data-prompt="Partnership with State Agencies" data-text="What would help build stronger system-wide alignment?"><label for="Provider_Partnership_with_State_Agencies_2"> What would help build stronger system-wide alignment?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Workforce & Capacity</strong>
+      <div><input type="checkbox" id="Provider_Workforce_&_Capacity_0" data-sheet="Provider" data-prompt="Workforce & Capacity" data-text="What are your staff doing well-and where do they need more support?"><label for="Provider_Workforce_&_Capacity_0"> What are your staff doing well-and where do they need more support?</label></div>
+      <div><input type="checkbox" id="Provider_Workforce_&_Capacity_1" data-sheet="Provider" data-prompt="Workforce & Capacity" data-text="What has worked well for hiring, onboarding, and training?"><label for="Provider_Workforce_&_Capacity_1"> What has worked well for hiring, onboarding, and training?</label></div>
+      <div><input type="checkbox" id="Provider_Workforce_&_Capacity_2" data-sheet="Provider" data-prompt="Workforce & Capacity" data-text="Where do staff feel empowered-and where do they feel stuck?"><label for="Provider_Workforce_&_Capacity_2"> Where do staff feel empowered-and where do they feel stuck?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Learning & Feedback</strong>
+      <div><input type="checkbox" id="Provider_Learning_&_Feedback_0" data-sheet="Provider" data-prompt="Learning & Feedback" data-text="How do you use data or feedback to improve your services?"><label for="Provider_Learning_&_Feedback_0"> How do you use data or feedback to improve your services?</label></div>
+      <div><input type="checkbox" id="Provider_Learning_&_Feedback_1" data-sheet="Provider" data-prompt="Learning & Feedback" data-text="What stories or signals tell you that your services are making a difference?"><label for="Provider_Learning_&_Feedback_1"> What stories or signals tell you that your services are making a difference?</label></div>
+      <div><input type="checkbox" id="Provider_Learning_&_Feedback_2" data-sheet="Provider" data-prompt="Learning & Feedback" data-text="Where could the state do more to learn from providers?"><label for="Provider_Learning_&_Feedback_2"> Where could the state do more to learn from providers?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Indv & Family</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Employment Goals</strong>
+      <div><input type="checkbox" id="Indv_&_Family_Employment_Goals_0" data-sheet="Indv & Family" data-prompt="Employment Goals" data-text="Have you been asked about what work means to you?"><label for="Indv_&_Family_Employment_Goals_0"> Have you been asked about what work means to you?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Employment_Goals_1" data-sheet="Indv & Family" data-prompt="Employment Goals" data-text="Do the services you receive help you move toward that job?"><label for="Indv_&_Family_Employment_Goals_1"> Do the services you receive help you move toward that job?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Employment_Goals_2" data-sheet="Indv & Family" data-prompt="Employment Goals" data-text="What kind of job would you (or your family member) like to have?"><label for="Indv_&_Family_Employment_Goals_2"> What kind of job would you (or your family member) like to have?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Support from People and Systems</strong>
+      <div><input type="checkbox" id="Indv_&_Family_Support_from_People_and_Systems_0" data-sheet="Indv & Family" data-prompt="Support from People and Systems" data-text="Who has helped you find or keep a job?"><label for="Indv_&_Family_Support_from_People_and_Systems_0"> Who has helped you find or keep a job?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Support_from_People_and_Systems_1" data-sheet="Indv & Family" data-prompt="Support from People and Systems" data-text="What kind of help has made a difference?"><label for="Indv_&_Family_Support_from_People_and_Systems_1"> What kind of help has made a difference?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Support_from_People_and_Systems_2" data-sheet="Indv & Family" data-prompt="Support from People and Systems" data-text="Where do you feel like no one is listening?"><label for="Indv_&_Family_Support_from_People_and_Systems_2"> Where do you feel like no one is listening?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Service Experience</strong>
+      <div><input type="checkbox" id="Indv_&_Family_Service_Experience_0" data-sheet="Indv & Family" data-prompt="Service Experience" data-text="Have you worked with providers who really listened and supported your goals?"><label for="Indv_&_Family_Service_Experience_0"> Have you worked with providers who really listened and supported your goals?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Service_Experience_1" data-sheet="Indv & Family" data-prompt="Service Experience" data-text="What made the provider experience positive or hard?"><label for="Indv_&_Family_Service_Experience_1"> What made the provider experience positive or hard?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Service_Experience_2" data-sheet="Indv & Family" data-prompt="Service Experience" data-text="What would you want to change about services?"><label for="Indv_&_Family_Service_Experience_2"> What would you want to change about services?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Collaboration and Connections</strong>
+      <div><input type="checkbox" id="Indv_&_Family_Collaboration_and_Connections_0" data-sheet="Indv & Family" data-prompt="Collaboration and Connections" data-text="Do the people helping you (schools, VR, providers) talk to each other?"><label for="Indv_&_Family_Collaboration_and_Connections_0"> Do the people helping you (schools, VR, providers) talk to each other?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Collaboration_and_Connections_1" data-sheet="Indv & Family" data-prompt="Collaboration and Connections" data-text="Where has it felt like things worked together?"><label for="Indv_&_Family_Collaboration_and_Connections_1"> Where has it felt like things worked together?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Collaboration_and_Connections_2" data-sheet="Indv & Family" data-prompt="Collaboration and Connections" data-text="Where has it felt like people weren’t working together?"><label for="Indv_&_Family_Collaboration_and_Connections_2"> Where has it felt like people weren’t working together?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Listening Session Wrap-Up Prompts</strong>
+      <div><input type="checkbox" id="Indv_&_Family_Listening_Session_Wrap-Up_Prompts_0" data-sheet="Indv & Family" data-prompt="Listening Session Wrap-Up Prompts" data-text="What should we make sure to share with decision-makers?"><label for="Indv_&_Family_Listening_Session_Wrap-Up_Prompts_0"> What should we make sure to share with decision-makers?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Listening_Session_Wrap-Up_Prompts_1" data-sheet="Indv & Family" data-prompt="Listening Session Wrap-Up Prompts" data-text="What is one thing you hope will change after this conversation?"><label for="Indv_&_Family_Listening_Session_Wrap-Up_Prompts_1"> What is one thing you hope will change after this conversation?</label></div>
+      <div><input type="checkbox" id="Indv_&_Family_Listening_Session_Wrap-Up_Prompts_2" data-sheet="Indv & Family" data-prompt="Listening Session Wrap-Up Prompts" data-text="Is there anything else you’d like us to understand?"><label for="Indv_&_Family_Listening_Session_Wrap-Up_Prompts_2"> Is there anything else you’d like us to understand?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">VR Partner</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Shared Vision & Strategic Alignment</strong>
+      <div><input type="checkbox" id="VR_Partner_Shared_Vision_&_Strategic_Alignment_0" data-sheet="VR Partner" data-prompt="Shared Vision & Strategic Alignment" data-text="How do you and your DD partners describe the purpose and priorities of your work together on employment?"><label for="VR_Partner_Shared_Vision_&_Strategic_Alignment_0"> How do you and your DD partners describe the purpose and priorities of your work together on employment?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Shared_Vision_&_Strategic_Alignment_1" data-sheet="VR Partner" data-prompt="Shared Vision & Strategic Alignment" data-text="Where do you notice alignment-and misalignment-between your agency’s vision and DD’s approach to competitive integrated employment?"><label for="VR_Partner_Shared_Vision_&_Strategic_Alignment_1"> Where do you notice alignment-and misalignment-between your agency’s vision and DD’s approach to competitive integrated employment?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Shared_Vision_&_Strategic_Alignment_2" data-sheet="VR Partner" data-prompt="Shared Vision & Strategic Alignment" data-text="What supports or hinders a shared understanding of employment across your leadership teams?"><label for="VR_Partner_Shared_Vision_&_Strategic_Alignment_2"> What supports or hinders a shared understanding of employment across your leadership teams?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Communication & Trust Building</strong>
+      <div><input type="checkbox" id="VR_Partner_Communication_&_Trust_Building_0" data-sheet="VR Partner" data-prompt="Communication & Trust Building" data-text="When communication between VR and DD goes well, what contributes to that success-and when it doesn’t, what tends to break down?"><label for="VR_Partner_Communication_&_Trust_Building_0"> When communication between VR and DD goes well, what contributes to that success-and when it doesn’t, what tends to break down?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Communication_&_Trust_Building_1" data-sheet="VR Partner" data-prompt="Communication & Trust Building" data-text="What makes it easier-or harder-to bring up concerns or disagreements with your DD partners?"><label for="VR_Partner_Communication_&_Trust_Building_1"> What makes it easier-or harder-to bring up concerns or disagreements with your DD partners?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Communication_&_Trust_Building_2" data-sheet="VR Partner" data-prompt="Communication & Trust Building" data-text="What helps build trust across agencies-and what risks weakening it?"><label for="VR_Partner_Communication_&_Trust_Building_2"> What helps build trust across agencies-and what risks weakening it?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Coordinated Planning & Support</strong>
+      <div><input type="checkbox" id="VR_Partner_Coordinated_Planning_&_Support_0" data-sheet="VR Partner" data-prompt="Coordinated Planning & Support" data-text="Where do individuals and families experience your agencies working well together-and where do they feel caught between them?"><label for="VR_Partner_Coordinated_Planning_&_Support_0"> Where do individuals and families experience your agencies working well together-and where do they feel caught between them?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Coordinated_Planning_&_Support_1" data-sheet="VR Partner" data-prompt="Coordinated Planning & Support" data-text="What makes planning across IPE and ISP easier-and what gets in the way of collaboration?"><label for="VR_Partner_Coordinated_Planning_&_Support_1"> What makes planning across IPE and ISP easier-and what gets in the way of collaboration?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Coordinated_Planning_&_Support_2" data-sheet="VR Partner" data-prompt="Coordinated Planning & Support" data-text="How do your teams handle differences in timelines, documentation, or eligibility-and where does that create confusion?"><label for="VR_Partner_Coordinated_Planning_&_Support_2"> How do your teams handle differences in timelines, documentation, or eligibility-and where does that create confusion?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding & Provider System Alignment</strong>
+      <div><input type="checkbox" id="VR_Partner_Funding_&_Provider_System_Alignment_0" data-sheet="VR Partner" data-prompt="Funding & Provider System Alignment" data-text="Where do funding structures between VR and DD create clarity for providers-and where do they create barriers or mixed messages?"><label for="VR_Partner_Funding_&_Provider_System_Alignment_0"> Where do funding structures between VR and DD create clarity for providers-and where do they create barriers or mixed messages?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Funding_&_Provider_System_Alignment_1" data-sheet="VR Partner" data-prompt="Funding & Provider System Alignment" data-text="How do you and DD approach provider guidance, expectations, and service definitions-and how well do those efforts align?"><label for="VR_Partner_Funding_&_Provider_System_Alignment_1"> How do you and DD approach provider guidance, expectations, and service definitions-and how well do those efforts align?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Funding_&_Provider_System_Alignment_2" data-sheet="VR Partner" data-prompt="Funding & Provider System Alignment" data-text="What do you hear from providers about navigating the space between your systems?"><label for="VR_Partner_Funding_&_Provider_System_Alignment_2"> What do you hear from providers about navigating the space between your systems?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Partnership Infrastructure & Shared Ownership</strong>
+      <div><input type="checkbox" id="VR_Partner_Partnership_Infrastructure_&_Shared_Ownership_0" data-sheet="VR Partner" data-prompt="Partnership Infrastructure & Shared Ownership" data-text="What structures or routines help your agencies stay in sync-and where do you rely on individual relationships to hold things together?"><label for="VR_Partner_Partnership_Infrastructure_&_Shared_Ownership_0"> What structures or routines help your agencies stay in sync-and where do you rely on individual relationships to hold things together?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Partnership_Infrastructure_&_Shared_Ownership_1" data-sheet="VR Partner" data-prompt="Partnership Infrastructure & Shared Ownership" data-text="Where is shared leadership clear-and where is responsibility for outcomes still siloed?"><label for="VR_Partner_Partnership_Infrastructure_&_Shared_Ownership_1"> Where is shared leadership clear-and where is responsibility for outcomes still siloed?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Partnership_Infrastructure_&_Shared_Ownership_2" data-sheet="VR Partner" data-prompt="Partnership Infrastructure & Shared Ownership" data-text="What agreements or practices would make the partnership more durable and predictable?"><label for="VR_Partner_Partnership_Infrastructure_&_Shared_Ownership_2"> What agreements or practices would make the partnership more durable and predictable?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Learning & Adaptive Practice</strong>
+      <div><input type="checkbox" id="VR_Partner_Learning_&_Adaptive_Practice_0" data-sheet="VR Partner" data-prompt="Learning & Adaptive Practice" data-text="Where are you and DD actively learning together-and where is reflection or feedback less common?"><label for="VR_Partner_Learning_&_Adaptive_Practice_0"> Where are you and DD actively learning together-and where is reflection or feedback less common?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Learning_&_Adaptive_Practice_1" data-sheet="VR Partner" data-prompt="Learning & Adaptive Practice" data-text="What helps your agencies recognize when something isn’t working-and respond constructively?"><label for="VR_Partner_Learning_&_Adaptive_Practice_1"> What helps your agencies recognize when something isn’t working-and respond constructively?</label></div>
+      <div><input type="checkbox" id="VR_Partner_Learning_&_Adaptive_Practice_2" data-sheet="VR Partner" data-prompt="Learning & Adaptive Practice" data-text="What makes it easier-or harder-for your teams to turn shared insight into shared action?"><label for="VR_Partner_Learning_&_Adaptive_Practice_2"> What makes it easier-or harder-for your teams to turn shared insight into shared action?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">School Transition</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Leadership</strong>
+      <div><input type="checkbox" id="School_Transition_Leadership_0" data-sheet="School Transition" data-prompt="Leadership" data-text="What expectations about employment are set for students with disabilities in your school or district?"><label for="School_Transition_Leadership_0"> What expectations about employment are set for students with disabilities in your school or district?</label></div>
+      <div><input type="checkbox" id="School_Transition_Leadership_1" data-sheet="School Transition" data-prompt="Leadership" data-text="How do school leaders reinforce the message that all students can work?"><label for="School_Transition_Leadership_1"> How do school leaders reinforce the message that all students can work?</label></div>
+      <div><input type="checkbox" id="School_Transition_Leadership_2" data-sheet="School Transition" data-prompt="Leadership" data-text="Where do school structures support or limit a focus on employment outcomes?"><label for="School_Transition_Leadership_2"> Where do school structures support or limit a focus on employment outcomes?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Interagency Collaboration</strong>
+      <div><input type="checkbox" id="School_Transition_Interagency_Collaboration_0" data-sheet="School Transition" data-prompt="Interagency Collaboration" data-text="What helps you coordinate with VR, DD, or other adult service systems during transition?"><label for="School_Transition_Interagency_Collaboration_0"> What helps you coordinate with VR, DD, or other adult service systems during transition?</label></div>
+      <div><input type="checkbox" id="School_Transition_Interagency_Collaboration_1" data-sheet="School Transition" data-prompt="Interagency Collaboration" data-text="Where do agency roles or timelines cause confusion or delays?"><label for="School_Transition_Interagency_Collaboration_1"> Where do agency roles or timelines cause confusion or delays?</label></div>
+      <div><input type="checkbox" id="School_Transition_Interagency_Collaboration_2" data-sheet="School Transition" data-prompt="Interagency Collaboration" data-text="How do you build and maintain strong relationships across systems?"><label for="School_Transition_Interagency_Collaboration_2"> How do you build and maintain strong relationships across systems?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding & Resource Alignment</strong>
+      <div><input type="checkbox" id="School_Transition_Funding_&_Resource_Alignment_0" data-sheet="School Transition" data-prompt="Funding & Resource Alignment" data-text="How do funding or staffing models impact your ability to support employment exploration?"><label for="School_Transition_Funding_&_Resource_Alignment_0"> How do funding or staffing models impact your ability to support employment exploration?</label></div>
+      <div><input type="checkbox" id="School_Transition_Funding_&_Resource_Alignment_1" data-sheet="School Transition" data-prompt="Funding & Resource Alignment" data-text="What transition services related to employment are underutilized or misunderstood?"><label for="School_Transition_Funding_&_Resource_Alignment_1"> What transition services related to employment are underutilized or misunderstood?</label></div>
+      <div><input type="checkbox" id="School_Transition_Funding_&_Resource_Alignment_2" data-sheet="School Transition" data-prompt="Funding & Resource Alignment" data-text="What would help align school resources with outside employment supports?"><label for="School_Transition_Funding_&_Resource_Alignment_2"> What would help align school resources with outside employment supports?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Staff Training & Capacity</strong>
+      <div><input type="checkbox" id="School_Transition_Staff_Training_&_Capacity_0" data-sheet="School Transition" data-prompt="Staff Training & Capacity" data-text="What training or support helps educators talk about employment with students and families?"><label for="School_Transition_Staff_Training_&_Capacity_0"> What training or support helps educators talk about employment with students and families?</label></div>
+      <div><input type="checkbox" id="School_Transition_Staff_Training_&_Capacity_1" data-sheet="School Transition" data-prompt="Staff Training & Capacity" data-text="Where do staff feel unsure about transition roles or processes?"><label for="School_Transition_Staff_Training_&_Capacity_1"> Where do staff feel unsure about transition roles or processes?</label></div>
+      <div><input type="checkbox" id="School_Transition_Staff_Training_&_Capacity_2" data-sheet="School Transition" data-prompt="Staff Training & Capacity" data-text="What tools help your team plan for employment early and often?"><label for="School_Transition_Staff_Training_&_Capacity_2"> What tools help your team plan for employment early and often?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Cultural Expectations</strong>
+      <div><input type="checkbox" id="School_Transition_Cultural_Expectations_0" data-sheet="School Transition" data-prompt="Cultural Expectations" data-text="What assumptions do you hear-explicit or not-about which students can work?"><label for="School_Transition_Cultural_Expectations_0"> What assumptions do you hear-explicit or not-about which students can work?</label></div>
+      <div><input type="checkbox" id="School_Transition_Cultural_Expectations_1" data-sheet="School Transition" data-prompt="Cultural Expectations" data-text="Where are staff or families setting high expectations?"><label for="School_Transition_Cultural_Expectations_1"> Where are staff or families setting high expectations?</label></div>
+      <div><input type="checkbox" id="School_Transition_Cultural_Expectations_2" data-sheet="School Transition" data-prompt="Cultural Expectations" data-text="What practices help shift culture toward full participation in work and community life?"><label for="School_Transition_Cultural_Expectations_2"> What practices help shift culture toward full participation in work and community life?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Family & Individual Engagement</strong>
+      <div><input type="checkbox" id="School_Transition_Family_&_Individual_Engagement_0" data-sheet="School Transition" data-prompt="Family & Individual Engagement" data-text="How do you talk with families about employment options and services?"><label for="School_Transition_Family_&_Individual_Engagement_0"> How do you talk with families about employment options and services?</label></div>
+      <div><input type="checkbox" id="School_Transition_Family_&_Individual_Engagement_1" data-sheet="School Transition" data-prompt="Family & Individual Engagement" data-text="What helps families feel hopeful and informed during transition?"><label for="School_Transition_Family_&_Individual_Engagement_1"> What helps families feel hopeful and informed during transition?</label></div>
+      <div><input type="checkbox" id="School_Transition_Family_&_Individual_Engagement_2" data-sheet="School Transition" data-prompt="Family & Individual Engagement" data-text="Where do students feel they have a real say in their future plans?"><label for="School_Transition_Family_&_Individual_Engagement_2"> Where do students feel they have a real say in their future plans?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Outcome Tracking</strong>
+      <div><input type="checkbox" id="School_Transition_Outcome_Tracking_0" data-sheet="School Transition" data-prompt="Outcome Tracking" data-text="What happens to students after they leave school-and how do you know?"><label for="School_Transition_Outcome_Tracking_0"> What happens to students after they leave school-and how do you know?</label></div>
+      <div><input type="checkbox" id="School_Transition_Outcome_Tracking_1" data-sheet="School Transition" data-prompt="Outcome Tracking" data-text="What outcome data is shared across agencies, and how is it used?"><label for="School_Transition_Outcome_Tracking_1"> What outcome data is shared across agencies, and how is it used?</label></div>
+      <div><input type="checkbox" id="School_Transition_Outcome_Tracking_2" data-sheet="School Transition" data-prompt="Outcome Tracking" data-text="How could outcome tracking be improved to support learning and equity?"><label for="School_Transition_Outcome_Tracking_2"> How could outcome tracking be improved to support learning and equity?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Continuous Improvement</strong>
+      <div><input type="checkbox" id="School_Transition_Continuous_Improvement_0" data-sheet="School Transition" data-prompt="Continuous Improvement" data-text="How do you reflect on what’s working or not working in your transition efforts?"><label for="School_Transition_Continuous_Improvement_0"> How do you reflect on what’s working or not working in your transition efforts?</label></div>
+      <div><input type="checkbox" id="School_Transition_Continuous_Improvement_1" data-sheet="School Transition" data-prompt="Continuous Improvement" data-text="Where does your team use feedback or data to make improvements?"><label for="School_Transition_Continuous_Improvement_1"> Where does your team use feedback or data to make improvements?</label></div>
+      <div><input type="checkbox" id="School_Transition_Continuous_Improvement_2" data-sheet="School Transition" data-prompt="Continuous Improvement" data-text="What would help schools and partners learn together about better pathways to employment?"><label for="School_Transition_Continuous_Improvement_2"> What would help schools and partners learn together about better pathways to employment?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Case Manager</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Advocacy and Expectations</strong>
+      <div><input type="checkbox" id="Case_Manager_Advocacy_and_Expectations_0" data-sheet="Case Manager" data-prompt="Advocacy and Expectations" data-text="What helps you feel confident advocating for someone’s employment goals?"><label for="Case_Manager_Advocacy_and_Expectations_0"> What helps you feel confident advocating for someone’s employment goals?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Advocacy_and_Expectations_1" data-sheet="Case Manager" data-prompt="Advocacy and Expectations" data-text="What signals do you get-directly or indirectly-about the importance of employment?"><label for="Case_Manager_Advocacy_and_Expectations_1"> What signals do you get-directly or indirectly-about the importance of employment?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Advocacy_and_Expectations_2" data-sheet="Case Manager" data-prompt="Advocacy and Expectations" data-text="What leadership or training supports make advocacy easier?"><label for="Case_Manager_Advocacy_and_Expectations_2"> What leadership or training supports make advocacy easier?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Advocacy_and_Expectations_3" data-sheet="Case Manager" data-prompt="Advocacy and Expectations" data-text="Where do you notice doubt about whether someone can work-and how do you respond?"><label for="Case_Manager_Advocacy_and_Expectations_3"> Where do you notice doubt about whether someone can work-and how do you respond?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>System Navigation</strong>
+      <div><input type="checkbox" id="Case_Manager_System_Navigation_0" data-sheet="Case Manager" data-prompt="System Navigation" data-text="What parts of interagency collaboration support you in your role?"><label for="Case_Manager_System_Navigation_0"> What parts of interagency collaboration support you in your role?</label></div>
+      <div><input type="checkbox" id="Case_Manager_System_Navigation_1" data-sheet="Case Manager" data-prompt="System Navigation" data-text="Where do timelines or planning expectations conflict across systems?"><label for="Case_Manager_System_Navigation_1"> Where do timelines or planning expectations conflict across systems?</label></div>
+      <div><input type="checkbox" id="Case_Manager_System_Navigation_2" data-sheet="Case Manager" data-prompt="System Navigation" data-text="How do you handle confusion or overlap in roles between DD, VR, or education?"><label for="Case_Manager_System_Navigation_2"> How do you handle confusion or overlap in roles between DD, VR, or education?</label></div>
+      <div><input type="checkbox" id="Case_Manager_System_Navigation_3" data-sheet="Case Manager" data-prompt="System Navigation" data-text="What would make system coordination easier or clearer?"><label for="Case_Manager_System_Navigation_3"> What would make system coordination easier or clearer?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Service Access and Planning</strong>
+      <div><input type="checkbox" id="Case_Manager_Service_Access_and_Planning_0" data-sheet="Case Manager" data-prompt="Service Access and Planning" data-text="How easy is it to authorize and explain employment services?"><label for="Case_Manager_Service_Access_and_Planning_0"> How easy is it to authorize and explain employment services?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Service_Access_and_Planning_1" data-sheet="Case Manager" data-prompt="Service Access and Planning" data-text="What supports are available-but rarely used or understood?"><label for="Case_Manager_Service_Access_and_Planning_1"> What supports are available-but rarely used or understood?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Service_Access_and_Planning_2" data-sheet="Case Manager" data-prompt="Service Access and Planning" data-text="When have you had to get creative to help someone pursue a job goal?"><label for="Case_Manager_Service_Access_and_Planning_2"> When have you had to get creative to help someone pursue a job goal?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Service_Access_and_Planning_3" data-sheet="Case Manager" data-prompt="Service Access and Planning" data-text="What could change to make planning for employment smoother?"><label for="Case_Manager_Service_Access_and_Planning_3"> What could change to make planning for employment smoother?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Cultural Expectations</strong>
+      <div><input type="checkbox" id="Case_Manager_Cultural_Expectations_0" data-sheet="Case Manager" data-prompt="Cultural Expectations" data-text="What expectations-positive or limiting-do you hear about people working?"><label for="Case_Manager_Cultural_Expectations_0"> What expectations-positive or limiting-do you hear about people working?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Cultural_Expectations_1" data-sheet="Case Manager" data-prompt="Cultural Expectations" data-text="Who is setting strong expectations for employment-and where is there doubt?"><label for="Case_Manager_Cultural_Expectations_1"> Who is setting strong expectations for employment-and where is there doubt?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Cultural_Expectations_2" data-sheet="Case Manager" data-prompt="Cultural Expectations" data-text="What messages do you send-intentionally or not-about what’s possible?"><label for="Case_Manager_Cultural_Expectations_2"> What messages do you send-intentionally or not-about what’s possible?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Reflection and Feedback</strong>
+      <div><input type="checkbox" id="Case_Manager_Reflection_and_Feedback_0" data-sheet="Case Manager" data-prompt="Reflection and Feedback" data-text="What helps you step back and reflect on how things are going?"><label for="Case_Manager_Reflection_and_Feedback_0"> What helps you step back and reflect on how things are going?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Reflection_and_Feedback_1" data-sheet="Case Manager" data-prompt="Reflection and Feedback" data-text="Where do you get to share feedback-and does it feel heard?"><label for="Case_Manager_Reflection_and_Feedback_1"> Where do you get to share feedback-and does it feel heard?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Reflection_and_Feedback_2" data-sheet="Case Manager" data-prompt="Reflection and Feedback" data-text="What small changes would make your role easier or more effective?"><label for="Case_Manager_Reflection_and_Feedback_2"> What small changes would make your role easier or more effective?</label></div>
+      <div><input type="checkbox" id="Case_Manager_Reflection_and_Feedback_3" data-sheet="Case Manager" data-prompt="Reflection and Feedback" data-text="What helps you stay focused on employment even when the system is busy?"><label for="Case_Manager_Reflection_and_Feedback_3"> What helps you stay focused on employment even when the system is busy?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Waiver Manager</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Leadership</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Leadership_0" data-sheet="Waiver Manager" data-prompt="Leadership" data-text="How do employment goals show up in waiver design, guidance, or oversight priorities?"><label for="Waiver_Manager_Leadership_0"> How do employment goals show up in waiver design, guidance, or oversight priorities?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Leadership_1" data-sheet="Waiver Manager" data-prompt="Leadership" data-text="What actions signal that employment is more than a stated value in our system?"><label for="Waiver_Manager_Leadership_1"> What actions signal that employment is more than a stated value in our system?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Leadership_2" data-sheet="Waiver Manager" data-prompt="Leadership" data-text="Where might leadership decisions be unintentionally creating mixed messages about employment?"><label for="Waiver_Manager_Leadership_2"> Where might leadership decisions be unintentionally creating mixed messages about employment?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding & Resource Alignment</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Funding_&_Resource_Alignment_0" data-sheet="Waiver Manager" data-prompt="Funding & Resource Alignment" data-text="How do current rate structures and funding mechanisms support or restrict CIE?"><label for="Waiver_Manager_Funding_&_Resource_Alignment_0"> How do current rate structures and funding mechanisms support or restrict CIE?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Funding_&_Resource_Alignment_1" data-sheet="Waiver Manager" data-prompt="Funding & Resource Alignment" data-text="Where do service definitions or payment rules create confusion or misalignment with goals?"><label for="Waiver_Manager_Funding_&_Resource_Alignment_1"> Where do service definitions or payment rules create confusion or misalignment with goals?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Funding_&_Resource_Alignment_2" data-sheet="Waiver Manager" data-prompt="Funding & Resource Alignment" data-text="What strategies or changes could make employment-related funding more flexible and person-centered?"><label for="Waiver_Manager_Funding_&_Resource_Alignment_2"> What strategies or changes could make employment-related funding more flexible and person-centered?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Staff Training & Capacity</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Staff_Training_&_Capacity_0" data-sheet="Waiver Manager" data-prompt="Staff Training & Capacity" data-text="How are case managers and providers trained to support employment services under the waiver? Is it working?"><label for="Waiver_Manager_Staff_Training_&_Capacity_0"> How are case managers and providers trained to support employment services under the waiver? Is it working?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Staff_Training_&_Capacity_1" data-sheet="Waiver Manager" data-prompt="Staff Training & Capacity" data-text="What capacity gaps are most visible-and how are we responding?"><label for="Waiver_Manager_Staff_Training_&_Capacity_1"> What capacity gaps are most visible-and how are we responding?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Staff_Training_&_Capacity_2" data-sheet="Waiver Manager" data-prompt="Staff Training & Capacity" data-text="What policies or incentives help grow the employment service workforce?"><label for="Waiver_Manager_Staff_Training_&_Capacity_2"> What policies or incentives help grow the employment service workforce?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Cultural Expectations</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Cultural_Expectations_0" data-sheet="Waiver Manager" data-prompt="Cultural Expectations" data-text="What expectations about employment are embedded in waiver language, forms, or guidance?"><label for="Waiver_Manager_Cultural_Expectations_0"> What expectations about employment are embedded in waiver language, forms, or guidance?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Cultural_Expectations_1" data-sheet="Waiver Manager" data-prompt="Cultural Expectations" data-text="Where do we unintentionally reinforce old assumptions or limiting practices?"><label for="Waiver_Manager_Cultural_Expectations_1"> Where do we unintentionally reinforce old assumptions or limiting practices?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Cultural_Expectations_2" data-sheet="Waiver Manager" data-prompt="Cultural Expectations" data-text="What actions can help shift the system toward higher expectations for everyone?"><label for="Waiver_Manager_Cultural_Expectations_2"> What actions can help shift the system toward higher expectations for everyone?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Family & Individual Engagement</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Family_&_Individual_Engagement_0" data-sheet="Waiver Manager" data-prompt="Family & Individual Engagement" data-text="How are individuals and families included in shaping waiver services and revisions?"><label for="Waiver_Manager_Family_&_Individual_Engagement_0"> How are individuals and families included in shaping waiver services and revisions?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Family_&_Individual_Engagement_1" data-sheet="Waiver Manager" data-prompt="Family & Individual Engagement" data-text="What supports help families understand employment options and believe it’s possible?"><label for="Waiver_Manager_Family_&_Individual_Engagement_1"> What supports help families understand employment options and believe it’s possible?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Family_&_Individual_Engagement_2" data-sheet="Waiver Manager" data-prompt="Family & Individual Engagement" data-text="Where do people feel like they have real choices-and where is that missing?"><label for="Waiver_Manager_Family_&_Individual_Engagement_2"> Where do people feel like they have real choices-and where is that missing?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Outcome Tracking</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Outcome_Tracking_0" data-sheet="Waiver Manager" data-prompt="Outcome Tracking" data-text="What employment data are we collecting from waiver participants-and how do we use it?"><label for="Waiver_Manager_Outcome_Tracking_0"> What employment data are we collecting from waiver participants-and how do we use it?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Outcome_Tracking_1" data-sheet="Waiver Manager" data-prompt="Outcome Tracking" data-text="How is that data shared across agencies or levels of leadership?"><label for="Waiver_Manager_Outcome_Tracking_1"> How is that data shared across agencies or levels of leadership?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Outcome_Tracking_2" data-sheet="Waiver Manager" data-prompt="Outcome Tracking" data-text="What’s missing in our ability to understand waiver impact on real employment outcomes?"><label for="Waiver_Manager_Outcome_Tracking_2"> What’s missing in our ability to understand waiver impact on real employment outcomes?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Continuous Improvement</strong>
+      <div><input type="checkbox" id="Waiver_Manager_Continuous_Improvement_0" data-sheet="Waiver Manager" data-prompt="Continuous Improvement" data-text="How often do we pause to ask: is our waiver moving us closer to CIE goals?"><label for="Waiver_Manager_Continuous_Improvement_0"> How often do we pause to ask: is our waiver moving us closer to CIE goals?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Continuous_Improvement_1" data-sheet="Waiver Manager" data-prompt="Continuous Improvement" data-text="Where do we hear from the people using the waiver-and how does that feedback drive change?"><label for="Waiver_Manager_Continuous_Improvement_1"> Where do we hear from the people using the waiver-and how does that feedback drive change?</label></div>
+      <div><input type="checkbox" id="Waiver_Manager_Continuous_Improvement_2" data-sheet="Waiver Manager" data-prompt="Continuous Improvement" data-text="What structure or rhythm helps our team learn, adapt, and adjust with purpose?"><label for="Waiver_Manager_Continuous_Improvement_2"> What structure or rhythm helps our team learn, adapt, and adjust with purpose?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Quality & Compliance</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Leadership</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Leadership_0" data-sheet="Quality & Compliance" data-prompt="Leadership" data-text="How do leadership priorities show up in the quality and compliance expectations we set?"><label for="Quality_&_Compliance_Leadership_0"> How do leadership priorities show up in the quality and compliance expectations we set?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Leadership_1" data-sheet="Quality & Compliance" data-prompt="Leadership" data-text="Where do our oversight tools reflect the shift to competitive, integrated employment-and where don’t they?"><label for="Quality_&_Compliance_Leadership_1"> Where do our oversight tools reflect the shift to competitive, integrated employment-and where don’t they?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Leadership_2" data-sheet="Quality & Compliance" data-prompt="Leadership" data-text="How does compliance culture impact the way innovation or risk-taking is handled?"><label for="Quality_&_Compliance_Leadership_2"> How does compliance culture impact the way innovation or risk-taking is handled?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Interagency Collaboration</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Interagency_Collaboration_0" data-sheet="Quality & Compliance" data-prompt="Interagency Collaboration" data-text="What shared indicators or review processes exist across agencies?"><label for="Quality_&_Compliance_Interagency_Collaboration_0"> What shared indicators or review processes exist across agencies?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Interagency_Collaboration_1" data-sheet="Quality & Compliance" data-prompt="Interagency Collaboration" data-text="Where are data or documentation standards causing friction or confusion between partners?"><label for="Quality_&_Compliance_Interagency_Collaboration_1"> Where are data or documentation standards causing friction or confusion between partners?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Interagency_Collaboration_2" data-sheet="Quality & Compliance" data-prompt="Interagency Collaboration" data-text="What would help quality and oversight staff collaborate more with partner systems?"><label for="Quality_&_Compliance_Interagency_Collaboration_2"> What would help quality and oversight staff collaborate more with partner systems?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding & Resource Alignment</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Funding_&_Resource_Alignment_0" data-sheet="Quality & Compliance" data-prompt="Funding & Resource Alignment" data-text="How does rate setting or billing oversight reinforce-or limit-employment outcomes?"><label for="Quality_&_Compliance_Funding_&_Resource_Alignment_0"> How does rate setting or billing oversight reinforce-or limit-employment outcomes?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Funding_&_Resource_Alignment_1" data-sheet="Quality & Compliance" data-prompt="Funding & Resource Alignment" data-text="Where do our systems create compliance burdens that take time away from quality service delivery?"><label for="Quality_&_Compliance_Funding_&_Resource_Alignment_1"> Where do our systems create compliance burdens that take time away from quality service delivery?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Funding_&_Resource_Alignment_2" data-sheet="Quality & Compliance" data-prompt="Funding & Resource Alignment" data-text="What data or monitoring could better reflect person-centered resource use?"><label for="Quality_&_Compliance_Funding_&_Resource_Alignment_2"> What data or monitoring could better reflect person-centered resource use?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Staff Training & Capacity</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Staff_Training_&_Capacity_0" data-sheet="Quality & Compliance" data-prompt="Staff Training & Capacity" data-text="What training do quality and compliance teams receive about employment services and expectations?"><label for="Quality_&_Compliance_Staff_Training_&_Capacity_0"> What training do quality and compliance teams receive about employment services and expectations?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Staff_Training_&_Capacity_1" data-sheet="Quality & Compliance" data-prompt="Staff Training & Capacity" data-text="How do we train staff to evaluate the quality of employment supports-not just their presence?"><label for="Quality_&_Compliance_Staff_Training_&_Capacity_1"> How do we train staff to evaluate the quality of employment supports-not just their presence?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Staff_Training_&_Capacity_2" data-sheet="Quality & Compliance" data-prompt="Staff Training & Capacity" data-text="Where is staff time or confidence a barrier to meaningful oversight?"><label for="Quality_&_Compliance_Staff_Training_&_Capacity_2"> Where is staff time or confidence a barrier to meaningful oversight?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Cultural Expectations</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Cultural_Expectations_0" data-sheet="Quality & Compliance" data-prompt="Cultural Expectations" data-text="What messages do our compliance and QA practices send about employment for people with disabilities?"><label for="Quality_&_Compliance_Cultural_Expectations_0"> What messages do our compliance and QA practices send about employment for people with disabilities?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Cultural_Expectations_1" data-sheet="Quality & Compliance" data-prompt="Cultural Expectations" data-text="Where do we unintentionally signal that paperwork matters more than outcomes?"><label for="Quality_&_Compliance_Cultural_Expectations_1"> Where do we unintentionally signal that paperwork matters more than outcomes?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Cultural_Expectations_2" data-sheet="Quality & Compliance" data-prompt="Cultural Expectations" data-text="What practices help shift our oversight culture toward one of learning and shared accountability?"><label for="Quality_&_Compliance_Cultural_Expectations_2"> What practices help shift our oversight culture toward one of learning and shared accountability?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Family & Individual Engagement</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Family_&_Individual_Engagement_0" data-sheet="Quality & Compliance" data-prompt="Family & Individual Engagement" data-text="How are self-advocates and families involved in reviewing or shaping quality measures?"><label for="Quality_&_Compliance_Family_&_Individual_Engagement_0"> How are self-advocates and families involved in reviewing or shaping quality measures?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Family_&_Individual_Engagement_1" data-sheet="Quality & Compliance" data-prompt="Family & Individual Engagement" data-text="What’s missing from how we track satisfaction or outcomes from their perspective?"><label for="Quality_&_Compliance_Family_&_Individual_Engagement_1"> What’s missing from how we track satisfaction or outcomes from their perspective?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Family_&_Individual_Engagement_2" data-sheet="Quality & Compliance" data-prompt="Family & Individual Engagement" data-text="How do we turn feedback into change-not just documentation?"><label for="Quality_&_Compliance_Family_&_Individual_Engagement_2"> How do we turn feedback into change-not just documentation?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Outcome Tracking</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Outcome_Tracking_0" data-sheet="Quality & Compliance" data-prompt="Outcome Tracking" data-text="What employment data are we required to collect-and how useful is it?"><label for="Quality_&_Compliance_Outcome_Tracking_0"> What employment data are we required to collect-and how useful is it?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Outcome_Tracking_1" data-sheet="Quality & Compliance" data-prompt="Outcome Tracking" data-text="Where do metrics reflect real progress versus box-checking?"><label for="Quality_&_Compliance_Outcome_Tracking_1"> Where do metrics reflect real progress versus box-checking?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Outcome_Tracking_2" data-sheet="Quality & Compliance" data-prompt="Outcome Tracking" data-text="What additional measures could better capture meaningful employment outcomes?"><label for="Quality_&_Compliance_Outcome_Tracking_2"> What additional measures could better capture meaningful employment outcomes?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Continuous Improvement</strong>
+      <div><input type="checkbox" id="Quality_&_Compliance_Continuous_Improvement_0" data-sheet="Quality & Compliance" data-prompt="Continuous Improvement" data-text="How often do we reflect on our own oversight processes and how they affect the system?"><label for="Quality_&_Compliance_Continuous_Improvement_0"> How often do we reflect on our own oversight processes and how they affect the system?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Continuous_Improvement_1" data-sheet="Quality & Compliance" data-prompt="Continuous Improvement" data-text="Where do we use what we’re learning to make changes in real time?"><label for="Quality_&_Compliance_Continuous_Improvement_1"> Where do we use what we’re learning to make changes in real time?</label></div>
+      <div><input type="checkbox" id="Quality_&_Compliance_Continuous_Improvement_2" data-sheet="Quality & Compliance" data-prompt="Continuous Improvement" data-text="What would help quality and compliance roles support-not slow-system transformation?"><label for="Quality_&_Compliance_Continuous_Improvement_2"> What would help quality and compliance roles support-not slow-system transformation?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Managed Care Orgs</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Leadership and Organizational Commitment</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Leadership_and_Organizational_Commitment_0" data-sheet="Managed Care Orgs" data-prompt="Leadership and Organizational Commitment" data-text="How does our MCO publicly demonstrate a commitment to employment for individuals with disabilities?"><label for="Managed_Care_Orgs_Leadership_and_Organizational_Commitment_0"> How does our MCO publicly demonstrate a commitment to employment for individuals with disabilities?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Leadership_and_Organizational_Commitment_1" data-sheet="Managed Care Orgs" data-prompt="Leadership and Organizational Commitment" data-text="Where do leadership priorities and operational practices align-or misalign-when it comes to supporting CIE?"><label for="Managed_Care_Orgs_Leadership_and_Organizational_Commitment_1"> Where do leadership priorities and operational practices align-or misalign-when it comes to supporting CIE?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Leadership_and_Organizational_Commitment_2" data-sheet="Managed Care Orgs" data-prompt="Leadership and Organizational Commitment" data-text="How do we ensure that employment is viewed as a health-related outcome, not just a social goal?"><label for="Managed_Care_Orgs_Leadership_and_Organizational_Commitment_2"> How do we ensure that employment is viewed as a health-related outcome, not just a social goal?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Interagency and Provider Collaboration</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Interagency_and_Provider_Collaboration_0" data-sheet="Managed Care Orgs" data-prompt="Interagency and Provider Collaboration" data-text="How effectively do we coordinate with state agencies, employment providers, and other stakeholders?"><label for="Managed_Care_Orgs_Interagency_and_Provider_Collaboration_0"> How effectively do we coordinate with state agencies, employment providers, and other stakeholders?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Interagency_and_Provider_Collaboration_1" data-sheet="Managed Care Orgs" data-prompt="Interagency and Provider Collaboration" data-text="Where are communication gaps or unclear handoffs between our care coordinators and employment-focused partners?"><label for="Managed_Care_Orgs_Interagency_and_Provider_Collaboration_1"> Where are communication gaps or unclear handoffs between our care coordinators and employment-focused partners?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Interagency_and_Provider_Collaboration_2" data-sheet="Managed Care Orgs" data-prompt="Interagency and Provider Collaboration" data-text="What formal agreements, data-sharing mechanisms, or referral pathways support collaboration?"><label for="Managed_Care_Orgs_Interagency_and_Provider_Collaboration_2"> What formal agreements, data-sharing mechanisms, or referral pathways support collaboration?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Funding and Resource Alignment</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Funding_and_Resource_Alignment_0" data-sheet="Managed Care Orgs" data-prompt="Funding and Resource Alignment" data-text="How do our payment models and care management processes encourage or discourage employment outcomes?"><label for="Managed_Care_Orgs_Funding_and_Resource_Alignment_0"> How do our payment models and care management processes encourage or discourage employment outcomes?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Funding_and_Resource_Alignment_1" data-sheet="Managed Care Orgs" data-prompt="Funding and Resource Alignment" data-text="Where do authorization policies create unintended barriers to employment supports?"><label for="Managed_Care_Orgs_Funding_and_Resource_Alignment_1"> Where do authorization policies create unintended barriers to employment supports?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Funding_and_Resource_Alignment_2" data-sheet="Managed Care Orgs" data-prompt="Funding and Resource Alignment" data-text="What flexibilities or innovations could help align managed care funding with employment services?"><label for="Managed_Care_Orgs_Funding_and_Resource_Alignment_2"> What flexibilities or innovations could help align managed care funding with employment services?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Care Coordinator Training and Capacity</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Care_Coordinator_Training_and_Capacity_0" data-sheet="Managed Care Orgs" data-prompt="Care Coordinator Training and Capacity" data-text="How are care coordinators trained on employment supports, benefits counseling, or related topics?"><label for="Managed_Care_Orgs_Care_Coordinator_Training_and_Capacity_0"> How are care coordinators trained on employment supports, benefits counseling, or related topics?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Care_Coordinator_Training_and_Capacity_1" data-sheet="Managed Care Orgs" data-prompt="Care Coordinator Training and Capacity" data-text="Where do coordinators feel confident-or uncertain-about integrating employment into person-centered planning?"><label for="Managed_Care_Orgs_Care_Coordinator_Training_and_Capacity_1"> Where do coordinators feel confident-or uncertain-about integrating employment into person-centered planning?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Care_Coordinator_Training_and_Capacity_2" data-sheet="Managed Care Orgs" data-prompt="Care Coordinator Training and Capacity" data-text="What tools or guidance would strengthen care management practices related to employment?"><label for="Managed_Care_Orgs_Care_Coordinator_Training_and_Capacity_2"> What tools or guidance would strengthen care management practices related to employment?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Cultural Expectations</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Cultural_Expectations_0" data-sheet="Managed Care Orgs" data-prompt="Cultural Expectations" data-text="What implicit or explicit messages do we send about the ability of members with disabilities to work?"><label for="Managed_Care_Orgs_Cultural_Expectations_0"> What implicit or explicit messages do we send about the ability of members with disabilities to work?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Cultural_Expectations_1" data-sheet="Managed Care Orgs" data-prompt="Cultural Expectations" data-text="Where do we unintentionally reinforce outdated assumptions (e.g., that work will harm benefits or increase health risks)?"><label for="Managed_Care_Orgs_Cultural_Expectations_1"> Where do we unintentionally reinforce outdated assumptions (e.g., that work will harm benefits or increase health risks)?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Cultural_Expectations_2" data-sheet="Managed Care Orgs" data-prompt="Cultural Expectations" data-text="How can we shift internal and external narratives toward higher expectations for employment?"><label for="Managed_Care_Orgs_Cultural_Expectations_2"> How can we shift internal and external narratives toward higher expectations for employment?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Member and Family Engagement</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Member_and_Family_Engagement_0" data-sheet="Managed Care Orgs" data-prompt="Member and Family Engagement" data-text="How do we talk with members and families about employment during care planning?"><label for="Managed_Care_Orgs_Member_and_Family_Engagement_0"> How do we talk with members and families about employment during care planning?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Member_and_Family_Engagement_1" data-sheet="Managed Care Orgs" data-prompt="Member and Family Engagement" data-text="Where do members feel like they have real, informed choices-and where do they feel limited?"><label for="Managed_Care_Orgs_Member_and_Family_Engagement_1"> Where do members feel like they have real, informed choices-and where do they feel limited?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Member_and_Family_Engagement_2" data-sheet="Managed Care Orgs" data-prompt="Member and Family Engagement" data-text="What supports help families understand the role of employment in improving quality of life?"><label for="Managed_Care_Orgs_Member_and_Family_Engagement_2"> What supports help families understand the role of employment in improving quality of life?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Data, Metrics, and Outcome Tracking</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Data,_Metrics,_and_Outcome_Tracking_0" data-sheet="Managed Care Orgs" data-prompt="Data, Metrics, and Outcome Tracking" data-text="What employment-related data do we track for our members?"><label for="Managed_Care_Orgs_Data,_Metrics,_and_Outcome_Tracking_0"> What employment-related data do we track for our members?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Data,_Metrics,_and_Outcome_Tracking_1" data-sheet="Managed Care Orgs" data-prompt="Data, Metrics, and Outcome Tracking" data-text="How do we use employment outcomes to inform quality improvement or contractual reporting?"><label for="Managed_Care_Orgs_Data,_Metrics,_and_Outcome_Tracking_1"> How do we use employment outcomes to inform quality improvement or contractual reporting?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Data,_Metrics,_and_Outcome_Tracking_2" data-sheet="Managed Care Orgs" data-prompt="Data, Metrics, and Outcome Tracking" data-text="What data are we missing that would better show how well we’re supporting employment goals?"><label for="Managed_Care_Orgs_Data,_Metrics,_and_Outcome_Tracking_2"> What data are we missing that would better show how well we’re supporting employment goals?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Continuous Improvement</strong>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Continuous_Improvement_0" data-sheet="Managed Care Orgs" data-prompt="Continuous Improvement" data-text="How do we learn from what’s working or not working in promoting employment through managed care?"><label for="Managed_Care_Orgs_Continuous_Improvement_0"> How do we learn from what’s working or not working in promoting employment through managed care?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Continuous_Improvement_1" data-sheet="Managed Care Orgs" data-prompt="Continuous Improvement" data-text="Where do we integrate member, family, or provider feedback into system improvements?"><label for="Managed_Care_Orgs_Continuous_Improvement_1"> Where do we integrate member, family, or provider feedback into system improvements?</label></div>
+      <div><input type="checkbox" id="Managed_Care_Orgs_Continuous_Improvement_2" data-sheet="Managed Care Orgs" data-prompt="Continuous Improvement" data-text="What structures (e.g., cross-team reviews, external learning networks) help us advance CIE outcomes?"><label for="Managed_Care_Orgs_Continuous_Improvement_2"> What structures (e.g., cross-team reviews, external learning networks) help us advance CIE outcomes?</label></div>
+    </div><br>
+  </div>
+</details>
+<details class="accordion">
+  <summary class="accordion-header">Exec Leadership</summary>
+  <div class="accordion-content">
+    <button class="select-all">Select All</button><button class="clear-all">Clear All</button><br><br>
+    <div class="subgroup"><strong>Vision and Shared Purpose</strong>
+      <div><input type="checkbox" id="Exec_Leadership_Vision_and_Shared_Purpose_0" data-sheet="Exec Leadership" data-prompt="Vision and Shared Purpose" data-text="How have your employment goals evolved over time?"><label for="Exec_Leadership_Vision_and_Shared_Purpose_0"> How have your employment goals evolved over time?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Vision_and_Shared_Purpose_1" data-sheet="Exec Leadership" data-prompt="Vision and Shared Purpose" data-text="How well are these goals reflected in your team’s priorities or actions?"><label for="Exec_Leadership_Vision_and_Shared_Purpose_1"> How well are these goals reflected in your team’s priorities or actions?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Vision_and_Shared_Purpose_2" data-sheet="Exec Leadership" data-prompt="Vision and Shared Purpose" data-text="What voices have helped shape your understanding of these goals?"><label for="Exec_Leadership_Vision_and_Shared_Purpose_2"> What voices have helped shape your understanding of these goals?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Vision_and_Shared_Purpose_3" data-sheet="Exec Leadership" data-prompt="Vision and Shared Purpose" data-text="What’s one question your team should explore next around employment goals?"><label for="Exec_Leadership_Vision_and_Shared_Purpose_3"> What’s one question your team should explore next around employment goals?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Vision_and_Shared_Purpose_4" data-sheet="Exec Leadership" data-prompt="Vision and Shared Purpose" data-text="How often does your team meet to talk about employment? What are those conversations like?"><label for="Exec_Leadership_Vision_and_Shared_Purpose_4"> How often does your team meet to talk about employment? What are those conversations like?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Cross-System Alignment</strong>
+      <div><input type="checkbox" id="Exec_Leadership_Cross-System_Alignment_0" data-sheet="Exec Leadership" data-prompt="Cross-System Alignment" data-text="Where is cross-agency alignment strongest-and what helped make it work?"><label for="Exec_Leadership_Cross-System_Alignment_0"> Where is cross-agency alignment strongest-and what helped make it work?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Cross-System_Alignment_1" data-sheet="Exec Leadership" data-prompt="Cross-System Alignment" data-text="What makes shared ownership of employment outcomes harder across systems?"><label for="Exec_Leadership_Cross-System_Alignment_1"> What makes shared ownership of employment outcomes harder across systems?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Cross-System_Alignment_2" data-sheet="Exec Leadership" data-prompt="Cross-System Alignment" data-text="What prevents deeper collaboration-and what would make it easier?"><label for="Exec_Leadership_Cross-System_Alignment_2"> What prevents deeper collaboration-and what would make it easier?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Cross-System_Alignment_3" data-sheet="Exec Leadership" data-prompt="Cross-System Alignment" data-text="What have you learned from other systems that shaped your own direction?"><label for="Exec_Leadership_Cross-System_Alignment_3"> What have you learned from other systems that shaped your own direction?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Strategic Investment</strong>
+      <div><input type="checkbox" id="Exec_Leadership_Strategic_Investment_0" data-sheet="Exec Leadership" data-prompt="Strategic Investment" data-text="Where are we investing in transformation-not just compliance?"><label for="Exec_Leadership_Strategic_Investment_0"> Where are we investing in transformation-not just compliance?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Strategic_Investment_1" data-sheet="Exec Leadership" data-prompt="Strategic Investment" data-text="How flexible is our funding strategy in response to need and innovation?"><label for="Exec_Leadership_Strategic_Investment_1"> How flexible is our funding strategy in response to need and innovation?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Strategic_Investment_2" data-sheet="Exec Leadership" data-prompt="Strategic Investment" data-text="Where do we see tension between cost efficiency and quality outcomes?"><label for="Exec_Leadership_Strategic_Investment_2"> Where do we see tension between cost efficiency and quality outcomes?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Strategic_Investment_3" data-sheet="Exec Leadership" data-prompt="Strategic Investment" data-text="How do we evaluate whether our investments across our service array reflect our goals?"><label for="Exec_Leadership_Strategic_Investment_3"> How do we evaluate whether our investments across our service array reflect our goals?</label></div>
+    </div><br>
+    <div class="subgroup"><strong>Leadership Culture</strong>
+      <div><input type="checkbox" id="Exec_Leadership_Leadership_Culture_0" data-sheet="Exec Leadership" data-prompt="Leadership Culture" data-text="What does your leadership team model about employment expectations?"><label for="Exec_Leadership_Leadership_Culture_0"> What does your leadership team model about employment expectations?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Leadership_Culture_1" data-sheet="Exec Leadership" data-prompt="Leadership Culture" data-text="Where do leaders encourage innovation-and where is risk punished?"><label for="Exec_Leadership_Leadership_Culture_1"> Where do leaders encourage innovation-and where is risk punished?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Leadership_Culture_2" data-sheet="Exec Leadership" data-prompt="Leadership Culture" data-text="How do you hear and respond to dissent or resistance?"><label for="Exec_Leadership_Leadership_Culture_2"> How do you hear and respond to dissent or resistance?</label></div>
+      <div><input type="checkbox" id="Exec_Leadership_Leadership_Culture_3" data-sheet="Exec Leadership" data-prompt="Leadership Culture" data-text="What part of your leadership culture are you proud of-and what needs to shift?"><label for="Exec_Leadership_Leadership_Culture_3"> What part of your leadership culture are you proud of-and what needs to shift?</label></div>
+    </div><br>
+  </div>
+</details>
+
+    </div>
+    <div class="sidebar">
+      <h2>Selected Summary</h2>
+      <textarea id="summary" readonly></textarea>
+      <div class="counter" id="counter">0 questions selected</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('change', e => {
+        if (e.target.matches('input[type="checkbox"]')) updateSummary();
+      });
+      document.body.addEventListener('click', e => {
+        if (e.target.matches('.select-all')) {
+          const content = e.target.closest('.accordion-content');
+          content.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
+          updateSummary();
+        }
+        if (e.target.matches('.clear-all')) {
+          const content = e.target.closest('.accordion-content');
+          content.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+          updateSummary();
+        }
+        if (e.target.id === 'clearAllGlobal') {
+          document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+          updateSummary();
+        }
+        if (e.target.id === 'exportTextBtn') exportText();
+        if (e.target.id === 'exportDocBtn') exportDoc();
+      });
+      document.getElementById('filterInput').addEventListener('input', function() {
+        const term = this.value.trim().toLowerCase();
+        document.querySelectorAll('details.accordion').forEach(det => {
+          let sectionHas = false;
+          det.querySelectorAll('.subgroup').forEach(sub => {
+            const hdr = sub.querySelector('strong');
+            const hdrMatch = hdr.textContent.toLowerCase().includes(term);
+            let subHas = false;
+            sub.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+              const lab = sub.querySelector(`label[for="${cb.id}"]`);
+              const txt = cb.dataset.text.toLowerCase();
+              if (term && txt.includes(term)) {
+                cb.parentElement.style.display = '';
+                lab.classList.add('highlight');
+                subHas = true;
+              } else {
+                cb.parentElement.style.display = 'none';
+                lab.classList.remove('highlight');
+              }
+            });
+            if (hdrMatch || subHas) {
+              sub.style.display = '';
+              hdr.classList.toggle('highlight', hdrMatch);
+              sectionHas = true;
+            } else {
+              sub.style.display = 'none';
+              hdr.classList.remove('highlight');
+            }
+          });
+          if (!term) {
+            det.open = false;
+            det.style.display = '';
+            det.querySelectorAll('.subgroup').forEach(sub => {
+              sub.style.display = '';
+              sub.querySelectorAll('input').forEach(i => i.parentElement.style.display = '');
+              sub.querySelector('strong').classList.remove('highlight');
+              sub.querySelectorAll('label').forEach(l => l.classList.remove('highlight'));
+            });
+          } else {
+            det.style.display = sectionHas ? '' : 'none';
+            det.open = sectionHas;
+          }
+        });
+        updateSummary();
+      });
+      updateSummary();
+    });
+
+    function updateSummary() {
+      const checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
+      const groups = {};
+      checked.forEach(cb => {
+        const s = cb.dataset.sheet, p = cb.dataset.prompt, t = cb.dataset.text;
+        groups[s] = groups[s] || {};
+        groups[s][p] = groups[s][p] || [];
+        groups[s][p].push(t);
+      });
+      let out = '';
+      Object.entries(groups).forEach(([s, pr]) => {
+        out += `--- ${s} ---\n`;
+        Object.entries(pr).forEach(([p, qs]) => {
+          out += `  • ${p}\n`;
+          qs.forEach(q => out += `     – ${q}\n`);
+          out += '\n';
+        });
+      });
+      const el = document.getElementById('summary');
+      el.value = out.trim();
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
+      document.getElementById('counter').textContent = checked.length + ' question' + (checked.length === 1 ? '' : 's') + ' selected';
+    }
+
+    function exportText() {
+      const t = document.getElementById('summary').value;
+      const blob = new Blob([t], {type:'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'selected_questions.txt';
+      a.click();
+    }
+
+    function exportDoc() {
+      const f = document.getElementById('summary').value.replace(/\n/g,'<br>');
+      const blob = new Blob(['<html><body>' + f + '</body></html>'], {type:'application/msword'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'selected_questions.doc';
+      a.click();
+    }
+  </script>
+</body>
+</html>
+
