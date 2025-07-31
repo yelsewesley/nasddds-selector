@@ -2,6 +2,15 @@
 
 // A Set to keep track of selected question IDs for efficiency
 let selectedQuestions = new Set();
+
+// Persist selections to localStorage
+function saveSelections() {
+  if (selectedQuestions.size === 0) {
+    localStorage.removeItem('selectedQuestions');
+  } else {
+    localStorage.setItem('selectedQuestions', JSON.stringify(Array.from(selectedQuestions)));
+  }
+}
 let allPromptsData = []; // To cache the data after the first fetch
 
 /**
@@ -116,6 +125,7 @@ function getFilteredData(data, term) {
 function clearAllSelections() {
   selectedQuestions.clear();
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  localStorage.removeItem('selectedQuestions');
   updateSummary();
 }
 
@@ -160,6 +170,7 @@ function updateSummary() {
     summaryTextArea.style.height = 'auto';
     summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
     document.getElementById('counter').textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
+    saveSelections();
 }
 
 /**
@@ -209,6 +220,14 @@ function exportDoc() {
 
 // --- INITIALIZATION AND EVENT LISTENERS ---
 document.addEventListener('DOMContentLoaded', () => {
+  const stored = localStorage.getItem('selectedQuestions');
+  if (stored) {
+    try {
+      selectedQuestions = new Set(JSON.parse(stored));
+    } catch (err) {
+      console.error('Failed to parse saved selections', err);
+    }
+  }
   loadAndRenderPrompts(); // Initial render
 
   // Attach listeners to static elements
