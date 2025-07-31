@@ -1,0 +1,648 @@
+[
+  {
+    "sheet": "State Team",
+    "prompts": [
+      {
+        "prompt": "Vision and Shared Purpose",
+        "questions": [
+          "How have your employment goals evolved over time?",
+          "How well are these goals reflected in our team’s priorities or actions?",
+          "What voices have helped shape our understanding of these goals?",
+          "What’s one question your team should explore next around employment goals?"
+        ]
+      },
+      {
+        "prompt": "Leadership Support",
+        "questions": [
+          "What leadership actions are helping move employment efforts forward-and where might adjustments be needed?",
+          "How are staff, partners, and stakeholders at different levels given opportunities to lead or shape employment work?",
+          "What messages from leadership are shaping our work?",
+          "How do you create space to share failures as part of learning?"
+        ]
+      },
+      {
+        "prompt": "Funding & Incentives",
+        "questions": [
+          "What activites and patterns are our funding structures encouraging or discouraging?",
+          "Where are financial incentives aligned-or misaligned-with our goals?",
+          "How do you gather and use insights about how funding is influencing employment outcomes?",
+          "How do we define accountability in ways that support learning, not punishment?"
+        ]
+      },
+      {
+        "prompt": "Interagency Collaboration",
+        "questions": [
+          "Where are we seeing true collaboration across systems?",
+          "What helps collaboration work-and where does it get stuck?",
+          "How do shared goals show up (or not) across agencies?",
+          "Who do you wish were at the table more often?"
+        ]
+      },
+      {
+        "prompt": "Provider Capacity & Support",
+        "questions": [
+          "What are we hearing from providers about their needs or strengths?",
+          "Where are we providing support that’s meaningful-and where are we missing?",
+          "How do providers experience our guidance or expectations?",
+          "Who is doing excellent work?"
+        ]
+      },
+      {
+        "prompt": "Innovation & Risk-Taking",
+        "questions": [
+          "What’s a recent example of your system trying something new?",
+          "What conditions helped that innovation happen?",
+          "What is the state’s role in supporting innovation?",
+          "What barriers or fears need to be acknowledged before trying new things?"
+        ]
+      },
+      {
+        "prompt": "Measurement, Learning, and Impact",
+        "questions": [
+          "What data do people in your system trust and use? What’s missing?",
+          "How are we using data to spark reflection, not just report outcomes?",
+          "What insights are we learning from both bright spots and breakdowns?"
+        ]
+      },
+      {
+        "prompt": "Looking Ahead",
+        "questions": [
+          "What part of your system feels most ready for growth or change?",
+          "What assumptions are you or your team ready to question?",
+          "What conversations do you want to be in next?"
+        ]
+      }
+    ]
+  },
+  {
+    "sheet": "Self-Guided",
+    "prompts": [
+      {
+        "prompt": "Vision & Strategic Goals (Retreat Workbook)",
+        "questions": [
+          "What does employment success look like across our system?",
+          "How do different stakeholders experience our goals?",
+          "What adjustments might make our goals more inclusive and actionable?"
+        ]
+      },
+      {
+        "prompt": "Leadership & Culture (Retreat Workbook)",
+        "questions": [
+          "What behaviors or messages from leaders reinforce employment as a priority?",
+          "Where do we see leadership driving momentum-or unintentionally slowing it?",
+          "What kind of leadership do we want to model at all levels?"
+        ]
+      },
+      {
+        "prompt": "Financing & Accountability (Retreat Workbook)",
+        "questions": [
+          "What are our funding structures telling us we value?",
+          "Where is there alignment or misalignment between funding and outcomes?",
+          "How do we define accountability in ways that support learning, not punishment?"
+        ]
+      },
+      {
+        "prompt": "Collaboration Across Systems (Retreat Workbook)",
+        "questions": [
+          "Where are we seeing true collaboration-and how did it start?",
+          "How are we showing up as good partners?",
+          "What’s one partnership we could strengthen this year?"
+        ]
+      },
+      {
+        "prompt": "Workforce & Provider Support (Retreat Workbook)",
+        "questions": [
+          "What support helps providers deliver great employment services?",
+          "Where do staff feel equipped-and where do they feel stuck?",
+          "What kind of learning environment are we cultivating?"
+        ]
+      },
+      {
+        "prompt": "Innovation & Emerging Practices (Retreat Workbook)",
+        "questions": [
+          "Where are people trying new things that support employment?",
+          "How can we make space for experimentation while staying grounded in purpose?",
+          "How do we lift up success stories that reflect creativity and inclusion?"
+        ]
+      },
+      {
+        "prompt": "Learning from Data (Retreat Workbook)",
+        "questions": [
+          "What story is our data telling us about employment?",
+          "How do we use data to guide-not dictate-strategy?",
+          "What are we learning from our bright spots and our gaps?"
+        ]
+      }
+    ]
+  },
+  {
+    "sheet": "Provider",
+    "prompts": [
+      {
+        "prompt": "Service Vision & Goals",
+        "questions": [
+          "What guides your agency’s approach to supporting community-based employment?",
+          "Where does your agency feel most aligned-or misaligned-with state goals?",
+          "What do you wish others understood about your work?"
+        ]
+      },
+      {
+        "prompt": "Leadership & Agency Support",
+        "questions": [
+          "How is leadership at your organization prioritizing employment?",
+          "Where are you seeing leadership remove barriers or model solutions?",
+          "What helps staff feel confident and supported in this work?"
+        ]
+      },
+      {
+        "prompt": "Funding & Incentives",
+        "questions": [
+          "How do funding structures influence the services you provide?",
+          "What funding challenges make it hard to do the right work?",
+          "Where have incentives or guidance supported innovation?"
+        ]
+      },
+      {
+        "prompt": "Partnership with State Agencies",
+        "questions": [
+          "What partnerships (e.g., with state agencies, VR, schools) are working well?",
+          "What collaboration challenges are you facing?",
+          "What would help build stronger system-wide alignment?"
+        ]
+      },
+      {
+        "prompt": "Workforce & Capacity",
+        "questions": [
+          "What are your staff doing well-and where do they need more support?",
+          "What has worked well for hiring, onboarding, and training?",
+          "Where do staff feel empowered-and where do they feel stuck?"
+        ]
+      },
+      {
+        "prompt": "Learning & Feedback",
+        "questions": [
+          "How do you use data or feedback to improve your services?",
+          "What stories or signals tell you that your services are making a difference?",
+          "Where could the state do more to learn from providers?"
+        ]
+      }
+    ]
+  },
+  {
+    "sheet": "Indv & Family",
+    "prompts": [
+        {
+            "prompt": "Employment Goals",
+            "questions": [
+                "Have you been asked about what work means to you?",
+                "Do the services you receive help you move toward that job?",
+                "What kind of job would you (or your family member) like to have?"
+            ]
+        },
+        {
+            "prompt": "Support from People and Systems",
+            "questions": [
+                "Who has helped you find or keep a job?",
+                "What kind of help has made a difference?",
+                "Where do you feel like no one is listening?"
+            ]
+        },
+        {
+            "prompt": "Service Experience",
+            "questions": [
+                "Have you worked with providers who really listened and supported your goals?",
+                "What made the provider experience positive or hard?",
+                "What would you want to change about services?"
+            ]
+        },
+        {
+            "prompt": "Collaboration and Connections",
+            "questions": [
+                "Do the people helping you (schools, VR, providers) talk to each other?",
+                "Where has it felt like things worked together?",
+                "Where has it felt like people weren’t working together?"
+            ]
+        },
+        {
+            "prompt": "Listening Session Wrap-Up Prompts",
+            "questions": [
+                "What should we make sure to share with decision-makers?",
+                "What is one thing you hope will change after this conversation?",
+                "Is there anything else you’d like us to understand?"
+            ]
+        }
+    ]
+  },
+  {
+      "sheet": "VR Partner",
+      "prompts": [
+          {
+              "prompt": "Shared Vision & Strategic Alignment",
+              "questions": [
+                  "How do you and your DD partners describe the purpose and priorities of your work together on employment?",
+                  "Where do you notice alignment-and misalignment-between your agency’s vision and DD’s approach to competitive integrated employment?",
+                  "What supports or hinders a shared understanding of employment across your leadership teams?"
+              ]
+          },
+          {
+              "prompt": "Communication & Trust Building",
+              "questions": [
+                  "When communication between VR and DD goes well, what contributes to that success-and when it doesn’t, what tends to break down?",
+                  "What makes it easier-or harder-to bring up concerns or disagreements with your DD partners?",
+                  "What helps build trust across agencies-and what risks weakening it?"
+              ]
+          },
+          {
+              "prompt": "Coordinated Planning & Support",
+              "questions": [
+                  "Where do individuals and families experience your agencies working well together-and where do they feel caught between them?",
+                  "What makes planning across IPE and ISP easier-and what gets in the way of collaboration?",
+                  "How do your teams handle differences in timelines, documentation, or eligibility-and where does that create confusion?"
+              ]
+          },
+          {
+              "prompt": "Funding & Provider System Alignment",
+              "questions": [
+                  "Where do funding structures between VR and DD create clarity for providers-and where do they create barriers or mixed messages?",
+                  "How do you and DD approach provider guidance, expectations, and service definitions-and how well do those efforts align?",
+                  "What do you hear from providers about navigating the space between your systems?"
+              ]
+          },
+          {
+              "prompt": "Partnership Infrastructure & Shared Ownership",
+              "questions": [
+                  "What structures or routines help your agencies stay in sync-and where do you rely on individual relationships to hold things together?",
+                  "Where is shared leadership clear-and where is responsibility for outcomes still siloed?",
+                  "What agreements or practices would make the partnership more durable and predictable?"
+              ]
+          },
+          {
+              "prompt": "Learning & Adaptive Practice",
+              "questions": [
+                  "Where are you and DD actively learning together-and where is reflection or feedback less common?",
+                  "What helps your agencies recognize when something isn’t working-and respond constructively?",
+                  "What makes it easier-or harder-for your teams to turn shared insight into shared action?"
+              ]
+          }
+      ]
+  },
+  {
+      "sheet": "School Transition",
+      "prompts": [
+          {
+              "prompt": "Leadership",
+              "questions": [
+                  "What expectations about employment are set for students with disabilities in your school or district?",
+                  "How do school leaders reinforce the message that all students can work?",
+                  "Where do school structures support or limit a focus on employment outcomes?"
+              ]
+          },
+          {
+              "prompt": "Interagency Collaboration",
+              "questions": [
+                  "What helps you coordinate with VR, DD, or other adult service systems during transition?",
+                  "Where do agency roles or timelines cause confusion or delays?",
+                  "How do you build and maintain strong relationships across systems?"
+              ]
+          },
+          {
+              "prompt": "Funding & Resource Alignment",
+              "questions": [
+                  "How do funding or staffing models impact your ability to support employment exploration?",
+                  "What transition services related to employment are underutilized or misunderstood?",
+                  "What would help align school resources with outside employment supports?"
+              ]
+          },
+          {
+              "prompt": "Staff Training & Capacity",
+              "questions": [
+                  "What training or support helps educators talk about employment with students and families?",
+                  "Where do staff feel unsure about transition roles or processes?",
+                  "What tools help your team plan for employment early and often?"
+              ]
+          },
+          {
+              "prompt": "Cultural Expectations",
+              "questions": [
+                  "What assumptions do you hear-explicit or not-about which students can work?",
+                  "Where are staff or families setting high expectations?",
+                  "What practices help shift culture toward full participation in work and community life?"
+              ]
+          },
+          {
+              "prompt": "Family & Individual Engagement",
+              "questions": [
+                  "How do you talk with families about employment options and services?",
+                  "What helps families feel hopeful and informed during transition?",
+                  "Where do students feel they have a real say in their future plans?"
+              ]
+          },
+          {
+              "prompt": "Outcome Tracking",
+              "questions": [
+                  "What happens to students after they leave school-and how do you know?",
+                  "What outcome data is shared across agencies, and how is it used?",
+                  "How could outcome tracking be improved to support learning and equity?"
+              ]
+          },
+          {
+              "prompt": "Continuous Improvement",
+              "questions": [
+                  "How do you reflect on what’s working or not working in your transition efforts?",
+                  "Where does your team use feedback or data to make improvements?",
+                  "What would help schools and partners learn together about better pathways to employment?"
+              ]
+          }
+      ]
+  },
+  {
+      "sheet": "Case Manager",
+      "prompts": [
+          {
+              "prompt": "Advocacy and Expectations",
+              "questions": [
+                  "What helps you feel confident advocating for someone’s employment goals?",
+                  "What signals do you get-directly or indirectly-about the importance of employment?",
+                  "What leadership or training supports make advocacy easier?",
+                  "Where do you notice doubt about whether someone can work-and how do you respond?"
+              ]
+          },
+          {
+              "prompt": "System Navigation",
+              "questions": [
+                  "What parts of interagency collaboration support you in your role?",
+                  "Where do timelines or planning expectations conflict across systems?",
+                  "How do you handle confusion or overlap in roles between DD, VR, or education?",
+                  "What would make system coordination easier or clearer?"
+              ]
+          },
+          {
+              "prompt": "Service Access and Planning",
+              "questions": [
+                  "How easy is it to authorize and explain employment services?",
+                  "What supports are available-but rarely used or understood?",
+                  "When have you had to get creative to help someone pursue a job goal?",
+                  "What could change to make planning for employment smoother?"
+              ]
+          },
+          {
+              "prompt": "Cultural Expectations",
+              "questions": [
+                  "What expectations-positive or limiting-do you hear about people working?",
+                  "Who is setting strong expectations for employment-and where is there doubt?",
+                  "What messages do you send-intentionally or not-about what’s possible?"
+              ]
+          },
+          {
+              "prompt": "Reflection and Feedback",
+              "questions": [
+                  "What helps you step back and reflect on how things are going?",
+                  "Where do you get to share feedback-and does it feel heard?",
+                  "What small changes would make your role easier or more effective?",
+                  "What helps you stay focused on employment even when the system is busy?"
+              ]
+          }
+      ]
+  },
+  {
+      "sheet": "Waiver Manager",
+      "prompts": [
+          {
+              "prompt": "Leadership",
+              "questions": [
+                  "How do employment goals show up in waiver design, guidance, or oversight priorities?",
+                  "What actions signal that employment is more than a stated value in our system?",
+                  "Where might leadership decisions be unintentionally creating mixed messages about employment?"
+              ]
+          },
+          {
+              "prompt": "Funding & Resource Alignment",
+              "questions": [
+                  "How do current rate structures and funding mechanisms support or restrict CIE?",
+                  "Where do service definitions or payment rules create confusion or misalignment with goals?",
+                  "What strategies or changes could make employment-related funding more flexible and person-centered?"
+              ]
+          },
+          {
+              "prompt": "Staff Training & Capacity",
+              "questions": [
+                  "How are case managers and providers trained to support employment services under the waiver? Is it working?",
+                  "What capacity gaps are most visible-and how are we responding?",
+                  "What policies or incentives help grow the employment service workforce?"
+              ]
+          },
+          {
+              "prompt": "Cultural Expectations",
+              "questions": [
+                  "What expectations about employment are embedded in waiver language, forms, or guidance?",
+                  "Where do we unintentionally reinforce old assumptions or limiting practices?",
+                  "What actions can help shift the system toward higher expectations for everyone?"
+              ]
+          },
+          {
+              "prompt": "Family & Individual Engagement",
+              "questions": [
+                  "How are individuals and families included in shaping waiver services and revisions?",
+                  "What supports help families understand employment options and believe it’s possible?",
+                  "Where do people feel like they have real choices-and where is that missing?"
+              ]
+          },
+          {
+              "prompt": "Outcome Tracking",
+              "questions": [
+                  "What employment data are we collecting from waiver participants-and how do we use it?",
+                  "How is that data shared across agencies or levels of leadership?",
+                  "What’s missing in our ability to understand waiver impact on real employment outcomes?"
+              ]
+          },
+          {
+              "prompt": "Continuous Improvement",
+              "questions": [
+                  "How often do we pause to ask: is our waiver moving us closer to CIE goals?",
+                  "Where do we hear from the people using the waiver-and how does that feedback drive change?",
+                  "What structure or rhythm helps our team learn, adapt, and adjust with purpose?"
+              ]
+          }
+      ]
+  },
+  {
+      "sheet": "Quality & Compliance",
+      "prompts": [
+          {
+              "prompt": "Leadership",
+              "questions": [
+                  "How do leadership priorities show up in the quality and compliance expectations we set?",
+                  "Where do our oversight tools reflect the shift to competitive, integrated employment-and where don’t they?",
+                  "How does compliance culture impact the way innovation or risk-taking is handled?"
+              ]
+          },
+          {
+              "prompt": "Interagency Collaboration",
+              "questions": [
+                  "What shared indicators or review processes exist across agencies?",
+                  "Where are data or documentation standards causing friction or confusion between partners?",
+                  "What would help quality and oversight staff collaborate more with partner systems?"
+              ]
+          },
+          {
+              "prompt": "Funding & Resource Alignment",
+              "questions": [
+                  "How does rate setting or billing oversight reinforce-or limit-employment outcomes?",
+                  "Where do our systems create compliance burdens that take time away from quality service delivery?",
+                  "What data or monitoring could better reflect person-centered resource use?"
+              ]
+          },
+          {
+              "prompt": "Staff Training & Capacity",
+              "questions": [
+                  "What training do quality and compliance teams receive about employment services and expectations?",
+                  "How do we train staff to evaluate the quality of employment supports-not just their presence?",
+                  "Where is staff time or confidence a barrier to meaningful oversight?"
+              ]
+          },
+          {
+              "prompt": "Cultural Expectations",
+              "questions": [
+                  "What messages do our compliance and QA practices send about employment for people with disabilities?",
+                  "Where do we unintentionally signal that paperwork matters more than outcomes?",
+                  "What practices help shift our oversight culture toward one of learning and shared accountability?"
+              ]
+          },
+          {
+              "prompt": "Family & Individual Engagement",
+              "questions": [
+                  "How are self-advocates and families involved in reviewing or shaping quality measures?",
+                  "What’s missing from how we track satisfaction or outcomes from their perspective?",
+                  "How do we turn feedback into change-not just documentation?"
+              ]
+          },
+          {
+              "prompt": "Outcome Tracking",
+              "questions": [
+                  "What employment data are we required to collect-and how useful is it?",
+                  "Where do metrics reflect real progress versus box-checking?",
+                  "What additional measures could better capture meaningful employment outcomes?"
+              ]
+          },
+          {
+              "prompt": "Continuous Improvement",
+              "questions": [
+                  "How often do we reflect on our own oversight processes and how they affect the system?",
+                  "Where do we use what we’re learning to make changes in real time?",
+                  "What would help quality and compliance roles support-not slow-system transformation?"
+              ]
+          }
+      ]
+  },
+  {
+      "sheet": "Managed Care Orgs",
+      "prompts": [
+          {
+              "prompt": "Leadership and Organizational Commitment",
+              "questions": [
+                  "How does our MCO publicly demonstrate a commitment to employment for individuals with disabilities?",
+                  "Where do leadership priorities and operational practices align-or misalign-when it comes to supporting CIE?",
+                  "How do we ensure that employment is viewed as a health-related outcome, not just a social goal?"
+              ]
+          },
+          {
+              "prompt": "Interagency and Provider Collaboration",
+              "questions": [
+                  "How effectively do we coordinate with state agencies, employment providers, and other stakeholders?",
+                  "Where are communication gaps or unclear handoffs between our care coordinators and employment-focused partners?",
+                  "What formal agreements, data-sharing mechanisms, or referral pathways support collaboration?"
+              ]
+          },
+          {
+              "prompt": "Funding and Resource Alignment",
+              "questions": [
+                  "How do our payment models and care management processes encourage or discourage employment outcomes?",
+                  "Where do authorization policies create unintended barriers to employment supports?",
+                  "What flexibilities or innovations could help align managed care funding with employment services?"
+              ]
+          },
+          {
+              "prompt": "Care Coordinator Training and Capacity",
+              "questions": [
+                  "How are care coordinators trained on employment supports, benefits counseling, or related topics?",
+                  "Where do coordinators feel confident-or uncertain-about integrating employment into person-centered planning?",
+                  "What tools or guidance would strengthen care management practices related to employment?"
+              ]
+          },
+          {
+              "prompt": "Cultural Expectations",
+              "questions": [
+                  "What implicit or explicit messages do we send about the ability of members with disabilities to work?",
+                  "Where do we unintentionally reinforce outdated assumptions (e.g., that work will harm benefits or increase health risks)?",
+                  "How can we shift internal and external narratives toward higher expectations for employment?"
+              ]
+          },
+          {
+              "prompt": "Member and Family Engagement",
+              "questions": [
+                  "How do we talk with members and families about employment during care planning?",
+                  "Where do members feel like they have real, informed choices-and where do they feel limited?",
+                  "What supports help families understand the role of employment in improving quality of life?"
+              ]
+          },
+          {
+              "prompt": "Data, Metrics, and Outcome Tracking",
+              "questions": [
+                  "What employment-related data do we track for our members?",
+                  "How do we use employment outcomes to inform quality improvement or contractual reporting?",
+                  "What data are we missing that would better show how well we’re supporting employment goals?"
+              ]
+          },
+          {
+              "prompt": "Continuous Improvement",
+              "questions": [
+                  "How do we learn from what’s working or not working in promoting employment through managed care?",
+                  "Where do we integrate member, family, or provider feedback into system improvements?",
+                  "What structures (e.g., cross-team reviews, external learning networks) help us advance CIE outcomes?"
+              ]
+          }
+      ]
+  },
+  {
+      "sheet": "Exec Leadership",
+      "prompts": [
+          {
+              "prompt": "Vision and Shared Purpose",
+              "questions": [
+                  "How have your employment goals evolved over time?",
+                  "How well are these goals reflected in your team’s priorities or actions?",
+                  "What voices have helped shape your understanding of these goals?",
+                  "What’s one question your team should explore next around employment goals?",
+                  "How often does your team meet to talk about employment? What are those conversations like?"
+              ]
+          },
+          {
+              "prompt": "Cross-System Alignment",
+              "questions": [
+                  "Where is cross-agency alignment strongest-and what helped make it work?",
+                  "What makes shared ownership of employment outcomes harder across systems?",
+                  "What prevents deeper collaboration-and what would make it easier?",
+                  "What have you learned from other systems that shaped your own direction?"
+              ]
+          },
+          {
+              "prompt": "Strategic Investment",
+              "questions": [
+                  "Where are we investing in transformation-not just compliance?",
+                  "How flexible is our funding strategy in response to need and innovation?",
+                  "Where do we see tension between cost efficiency and quality outcomes?",
+                  "How do we evaluate whether our investments across our service array reflect our goals?"
+              ]
+          },
+          {
+              "prompt": "Leadership Culture",
+              "questions": [
+                  "What does your leadership team model about employment expectations?",
+                  "Where do leaders encourage innovation-and where is risk punished?",
+                  "How do you hear and respond to dissent or resistance?",
+                  "What part of your leadership culture are you proud of-and what needs to shift?"
+              ]
+          }
+      ]
+  }
+]
