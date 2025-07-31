@@ -55,8 +55,14 @@ button {
   cursor: pointer; 
   transition: background-color 0.2s;
 }
-button:hover { 
-  background: #004466; 
+button:hover {
+  background: #004466;
+}
+
+/* Copy button styling matches other control buttons */
+#copyBtn {
+  background: #006699;
+  color: #fff;
 }
 
 /* Main Layout: Main Content and Sidebar */

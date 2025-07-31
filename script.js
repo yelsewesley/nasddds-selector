@@ -236,6 +236,16 @@ function exportPdf() {
   html2pdf().set(opt).from(container).save();
 }
 
+/**
+ * Copies the summary text to the clipboard.
+ */
+function copySummary() {
+  const text = document.getElementById('summary').value;
+  navigator.clipboard.writeText(text).catch(err => {
+    console.error('Failed to copy summary', err);
+  });
+}
+
 // --- INITIALIZATION AND EVENT LISTENERS ---
 document.addEventListener('DOMContentLoaded', () => {
   const stored = localStorage.getItem('selectedQuestions');
@@ -254,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('exportTextBtn').addEventListener('click', exportText);
     document.getElementById('exportDocBtn').addEventListener('click', exportDoc);
     document.getElementById('exportPdfBtn').addEventListener('click', exportPdf);
+    document.getElementById('copyBtn').addEventListener('click', copySummary);
     document.getElementById('clearAllGlobal').addEventListener('click', clearAllSelections);
 
   // Use event delegation for dynamically created elements
