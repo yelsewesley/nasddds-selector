@@ -162,9 +162,9 @@ return null;
   for (const sheet in groupedSelections) {
   summaryText += `--- ${sheet} ---\n`;
   for (const prompt in groupedSelections[sheet]) {
-  summaryText += `  * ${prompt}\n`;
+  summaryText += `  • ${prompt}\n`;
   groupedSelections[sheet][prompt].forEach(q => {
-  summaryText += `     - ${q}\n`;
+  summaryText += `     – ${q}\n`;
   });
   summaryText += ‘\n’;
   }
@@ -195,7 +195,7 @@ return null;
   */
   function exportText() {
   const text = document.getElementById(‘summary’).value;
-  const blob = new Blob([text], { type: ‘text/plain;charset=utf-8’ });
+  const blob = new Blob([text], { type: ‘text/plain’ });
   const a = document.createElement(‘a’);
   a.href = URL.createObjectURL(blob);
   a.download = ‘selected_questions.txt’;
@@ -210,42 +210,17 @@ return null;
 - Exports the summary as a .doc file.
   */
   function exportDoc() {
-  const text = document.getElementById(‘summary’).value;
-  // Convert plain text to HTML with proper line breaks
-  const htmlContent = text
-  .replace(/&/g, ‘&’)
-  .replace(/</g, ‘<’)
-  .replace(/>/g, ‘>’)
-  .replace(/\n/g, ‘<br>\n’);
-
-const html = `<!DOCTYPE html>
-
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Selected Questions</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-        .section-header { font-weight: bold; font-size: 14px; margin-top: 20px; margin-bottom: 10px; }
-        .prompt-item { margin-left: 20px; margin-bottom: 5px; }
-        .question-item { margin-left: 40px; margin-bottom: 3px; }
-    </style>
-</head>
-<body>
-    <h1>Selected Questions</h1>
-    <div>${htmlContent}</div>
-</body>
-</html>`;
-
-const blob = new Blob([html], { type: ‘application/msword;charset=utf-8’ });
-const a = document.createElement(‘a’);
-a.href = URL.createObjectURL(blob);
-a.download = ‘selected_questions.doc’;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
-URL.revokeObjectURL(a.href);
-}
+  const content = document.getElementById(‘summary’).value.replace(/\n/g, ‘<br>’);
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>${content}</body></html>`;
+  const blob = new Blob([html], { type: ‘application/msword’ });
+  const a = document.createElement(‘a’);
+  a.href = URL.createObjectURL(blob);
+  a.download = ‘selected_questions.doc’;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  }
 
 // — INITIALIZATION AND EVENT LISTENERS —
 document.addEventListener(‘DOMContentLoaded’, () => {
