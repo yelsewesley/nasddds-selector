@@ -170,7 +170,18 @@ return null;
   }
   }
   
-  summaryTextArea.value = summaryText.trim();
+  // Clean the text to remove any Unicode characters that might be in the source data
+  const cleanedText = summaryText
+  .replace(/•/g, ‘*’)           // Replace bullet with asterisk
+  .replace(/–/g, ‘-’)           // Replace en-dash with hyphen
+  .replace(/—/g, ‘-’)           // Replace em-dash with hyphen
+  .replace(/’/g, “’”)           // Replace smart apostrophe
+  .replace(/”/g, ‘”’)           // Replace smart quote left
+  .replace(/”/g, ‘”’)           // Replace smart quote right
+  .replace(/…/g, ‘…’)         // Replace ellipsis
+  .replace(/\u00A0/g, ’ ’);     // Replace non-breaking space
+  
+  summaryTextArea.value = cleanedText.trim();
   summaryTextArea.style.height = ‘auto’;
   summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
   document.getElementById(‘counter’).textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
