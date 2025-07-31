@@ -1,5 +1,4 @@
-// — DIAGNOSTIC VERSION —
-console.log(‘Script loading…’);
+// — CLEAN VERSION WITH STANDARD QUOTES —
 
 // A Set to keep track of selected question IDs for efficiency
 let selectedQuestions = new Set();
@@ -11,30 +10,21 @@ let allPromptsData = []; // To cache the data after the first fetch
 - @param {string} [filterTerm=’’] - An optional term to filter the questions.
   */
   async function loadAndRenderPrompts(filterTerm = ‘’) {
-  console.log(‘loadAndRenderPrompts called with filterTerm:’, filterTerm);
-
-// Fetch data only once and cache it
-if (allPromptsData.length === 0) {
-console.log(‘Fetching prompts.json…’);
-try {
-const response = await fetch(‘prompts.json’);
-console.log(‘Fetch response:’, response);
-if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-allPromptsData = await response.json();
-console.log(‘Data loaded successfully:’, allPromptsData);
-} catch (error) {
-console.error(‘Error fetching prompts data:’, error);
-const mainContent = document.getElementById(‘main-content’);
-if (mainContent) {
-mainContent.innerHTML += ‘<p style="color: red;">Error: Could not load questions. Please check the console for details.</p>’;
-} else {
-console.error(‘main-content element not found!’);
-}
-return;
-}
-}
-renderUI(filterTerm);
-}
+  // Fetch data only once and cache it
+  if (allPromptsData.length === 0) {
+  try {
+  const response = await fetch(‘prompts.json’);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  allPromptsData = await response.json();
+  } catch (error) {
+  console.error(‘Error fetching prompts data:’, error);
+  const mainContent = document.getElementById(‘main-content’);
+  mainContent.innerHTML += ‘<p style="color: red;">Error: Could not load questions. Please check the console for details.</p>’;
+  return;
+  }
+  }
+  renderUI(filterTerm);
+  }
 
 /**
 
@@ -42,35 +32,20 @@ renderUI(filterTerm);
 - @param {string} filterTerm - The term to filter questions by.
   */
   function renderUI(filterTerm = ‘’) {
-  console.log(‘renderUI called with filterTerm:’, filterTerm);
   const mainContent = document.getElementById(‘main-content’);
-
-if (!mainContent) {
-console.error(‘main-content element not found!’);
-return;
-}
-
-// Clear previous accordions but keep the instructions
-mainContent.querySelectorAll(’.accordion, .no-results’).forEach(el => el.remove());
+  // Clear previous accordions but keep the instructions
+  mainContent.querySelectorAll(’.accordion, .no-results’).forEach(el => el.remove());
 
 const filteredData = getFilteredData(allPromptsData, filterTerm.toLowerCase());
-console.log(‘Filtered data:’, filteredData);
 
 if (filteredData.length === 0 && filterTerm) {
 const noResults = document.createElement(‘p’);
 noResults.textContent = ‘No questions match your filter.’;
 noResults.className = ‘no-results’;
 mainContent.appendChild(noResults);
-return;
 }
 
-if (filteredData.length === 0) {
-console.log(‘No data to render’);
-return;
-}
-
-filteredData.forEach((sheet, sheetIndex) => {
-console.log(`Rendering sheet ${sheetIndex}:`, sheet.sheet);
+filteredData.forEach(sheet => {
 const details = document.createElement(‘details’);
 details.className = ‘accordion’;
 if (filterTerm) details.open = true;
@@ -85,8 +60,7 @@ const content = document.createElement('div');
 content.className = 'accordion-content';
 content.innerHTML = `<button class="select-all">Select All</button><button class="clear-all">Clear All</button>`;
 
-sheet.prompts.forEach((prompt, promptIndex) => {
-  console.log(`  Rendering prompt ${promptIndex}:`, prompt.prompt);
+sheet.prompts.forEach(prompt => {
   const subgroup = document.createElement('div');
   subgroup.className = 'subgroup';
   subgroup.innerHTML = `<strong>${prompt.prompt}</strong>`;
@@ -110,7 +84,6 @@ mainContent.appendChild(details);
 
 });
 
-console.log(‘Rendering complete, calling updateSummary’);
 updateSummary();
 }
 
@@ -148,7 +121,6 @@ return null;
 - Clears all selections globally.
   */
   function clearAllSelections() {
-  console.log(‘Clearing all selections’);
   selectedQuestions.clear();
   document.querySelectorAll(‘input[type=“checkbox”]’).forEach(cb => cb.checked = false);
   updateSummary();
@@ -159,13 +131,7 @@ return null;
 - Updates the summary sidebar with selected questions.
   */
   function updateSummary() {
-  console.log(‘updateSummary called’);
   const summaryTextArea = document.getElementById(‘summary’);
-  if (!summaryTextArea) {
-  console.error(‘summary element not found!’);
-  return;
-  }
-  
   const groupedSelections = {};
   
   selectedQuestions.forEach(id => {
@@ -215,11 +181,7 @@ return null;
   summaryTextArea.value = summaryText.trim();
   summaryTextArea.style.height = ‘auto’;
   summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
-  
-  const counter = document.getElementById(‘counter’);
-  if (counter) {
-  counter.textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
-  }
+  document.getElementById(‘counter’).textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
   }
 
 /**
@@ -240,7 +202,6 @@ return null;
 - Exports the summary as a .txt file.
   */
   function exportText() {
-  console.log(‘exportText called’);
   const text = document.getElementById(‘summary’).value;
   const element = document.createElement(‘a’);
   const file = new Blob([text], {type: ‘text/plain’});
@@ -257,7 +218,6 @@ return null;
 - Exports the summary as an HTML file that can be opened in Word.
   */
   function exportDoc() {
-  console.log(‘exportDoc called’);
   const text = document.getElementById(‘summary’).value;
 
 // Create simple HTML that Word can handle
@@ -300,92 +260,55 @@ document.body.removeChild(element);
 
 // — INITIALIZATION AND EVENT LISTENERS —
 document.addEventListener(‘DOMContentLoaded’, () => {
-console.log(‘DOM loaded, initializing…’);
-
-// Check if required elements exist
-const requiredElements = [‘main-content’, ‘filterInput’, ‘summary’, ‘counter’];
-requiredElements.forEach(id => {
-const element = document.getElementById(id);
-if (element) {
-console.log(`✓ Found element: ${id}`);
-} else {
-console.error(`✗ Missing element: ${id}`);
-}
-});
-
 loadAndRenderPrompts(); // Initial render
 
 // Attach listeners to static elements
 const filterInput = document.getElementById(‘filterInput’);
-if (filterInput) {
-filterInput.addEventListener(‘input’, () => {
-console.log(‘Filter input changed:’, filterInput.value);
-renderUI(filterInput.value);
-});
-}
-
-const exportTextBtn = document.getElementById(‘exportTextBtn’);
-if (exportTextBtn) {
-exportTextBtn.addEventListener(‘click’, exportText);
-}
-
-const exportDocBtn = document.getElementById(‘exportDocBtn’);
-if (exportDocBtn) {
-exportDocBtn.addEventListener(‘click’, exportDoc);
-}
-
-const clearAllGlobal = document.getElementById(‘clearAllGlobal’);
-if (clearAllGlobal) {
-clearAllGlobal.addEventListener(‘click’, clearAllSelections);
-}
+filterInput.addEventListener(‘input’, () => renderUI(filterInput.value));
+document.getElementById(‘exportTextBtn’).addEventListener(‘click’, exportText);
+document.getElementById(‘exportDocBtn’).addEventListener(‘click’, exportDoc);
+document.getElementById(‘clearAllGlobal’).addEventListener(‘click’, clearAllSelections);
 
 // Use event delegation for dynamically created elements
 const mainContent = document.getElementById(‘main-content’);
-if (mainContent) {
 mainContent.addEventListener(‘click’, e => {
 const target = e.target;
 const accordion = target.closest(’.accordion’);
 if (!accordion) return;
 
 ```
-  const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
-  if (target.classList.contains('select-all')) {
-    console.log('Select all clicked');
-    checkboxes.forEach(cb => {
-      if (!cb.checked) {
-          cb.checked = true;
-          selectedQuestions.add(cb.dataset.id);
-      }
-    });
-    updateSummary();
-  }
-  if (target.classList.contains('clear-all')) {
-    console.log('Clear all clicked');
-    checkboxes.forEach(cb => {
-      if (cb.checked) {
-          cb.checked = false;
-          selectedQuestions.delete(cb.dataset.id);
-      }
-    });
-    updateSummary();
-  }
-});
-
-mainContent.addEventListener('change', e => {
-  if (e.target.matches('input[type="checkbox"]')) {
-    const id = e.target.dataset.id;
-    console.log('Checkbox changed:', id, 'checked:', e.target.checked);
-    if (e.target.checked) {
-      selectedQuestions.add(id);
-    } else {
-      selectedQuestions.delete(id);
+const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
+if (target.classList.contains('select-all')) {
+  checkboxes.forEach(cb => {
+    if (!cb.checked) {
+        cb.checked = true;
+        selectedQuestions.add(cb.dataset.id);
     }
-    updateSummary();
-  }
-});
+  });
+  updateSummary();
+}
+if (target.classList.contains('clear-all')) {
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+        cb.checked = false;
+        selectedQuestions.delete(cb.dataset.id);
+    }
+  });
+  updateSummary();
+}
 ```
 
-}
+});
 
-console.log(‘Initialization complete’);
+mainContent.addEventListener(‘change’, e => {
+if (e.target.matches(‘input[type=“checkbox”]’)) {
+const id = e.target.dataset.id;
+if (e.target.checked) {
+selectedQuestions.add(id);
+} else {
+selectedQuestions.delete(id);
+}
+updateSummary();
+}
+});
 });
