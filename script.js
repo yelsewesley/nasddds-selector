@@ -72,11 +72,6 @@ function renderUI(filterTerm = '') {
       subgroup.innerHTML = `<strong>${prompt.prompt}</strong>`;
 
       prompt.questions.forEach((question, index) => {
-        // Create a unique and reversible ID for each question
-        const sheetKey = encodeURIComponent(sheet.sheet);
-        const promptKey = encodeURIComponent(prompt.prompt);
-        const id = `${sheetKey}|${promptKey}|${index}`;
-=======
         // Create a unique and stable ID for each question
         const sanitizedSheet = sheet.sheet.replace(/\s|&/g, '_');
         const sanitizedPrompt = prompt.prompt.replace(/\s|&/g, '_');
@@ -143,9 +138,6 @@ function updateSummary() {
 
     selectedQuestions.forEach(id => {
         const [sheetKey, promptKey, questionIndexStr] = id.split('|');
-        const sheetName = decodeURIComponent(sheetKey);
-        const promptName = decodeURIComponent(promptKey);
-=======
         const sheetName = sheetKey.replace(/_/g, ' ');
         const promptName = promptKey.replace(/_/g, ' ');
         const questionIndex = parseInt(questionIndexStr, 10);
