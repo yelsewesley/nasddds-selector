@@ -1,11 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; URL=NASDDDS_Selector_Final.html" />
-  <title>Redirecting to Prompt Selector</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NASDDDS Prompt Selector</title>
+  <!-- Link to the external stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Link to the external JavaScript file, deferred to load after the HTML -->
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <p>Redirecting to <a href="NASDDDS_Selector_Final.html">NASDDDS_Selector_Final.html</a>...</p>
+  <!-- Top navigation bar with title and controls -->
+  <div class="topbar">
+    <h1>Prompt Selector – NASDDDS</h1>
+    <div class="controls">
+      <label for="filterInput">Filter:</label>
+      <input type="text" id="filterInput" placeholder="Type to search…">
+      <button id="exportTextBtn">Export Text</button>
+      <button id="exportDocBtn">Export Word</button>
+      <button id="clearAllGlobal">Clear All</button>
+    </div>
+  </div>
+
+  <!-- Main content container -->
+  <div class="container">
+    <!-- Area where questions will be dynamically loaded -->
+    <div class="main" id="main-content">
+      <div class="instructions">
+        <strong>How to Use:</strong><br>
+        Search to filter questions. Click a category header to expand or collapse it. Use the "Select All" or "Clear All" buttons within each category as needed. Your selections will appear in the sidebar.
+      </div>
+      <!-- Accordions will be dynamically inserted here by script.js -->
+    </div>
+
+    <!-- Sidebar to display the user's selected questions -->
+    <div class="sidebar">
+      <h2>Selected Summary</h2>
+      <textarea id="summary" readonly></textarea>
+      <div class="counter" id="counter">0 questions selected</div>
+    </div>
+  </div>
 </body>
 </html>

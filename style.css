@@ -1,0 +1,200 @@
+/* General Body and Font Styles */
+body { 
+  font-family: 'Segoe UI', sans-serif; 
+  margin: 0; 
+  padding: 0; 
+  background: #f4f7f9; 
+  color: #2c3e50; 
+  font-size: 15px; 
+}
+
+/* Top Bar & Controls Styling */
+.topbar { 
+  position: sticky; 
+  top: 0; 
+  background: #ffffff; 
+  border-bottom: 1px solid #dee2e6; 
+  padding: 12px 24px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  z-index: 1000;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.topbar h1 {
+  font-size: 1.5em;
+  margin: 0;
+  color: #005a87;
+}
+.controls { 
+  display: flex; 
+  gap: 10px; 
+  align-items: center;
+  flex-wrap: wrap;
+}
+input[type="text"] { 
+  width: 200px; 
+  padding: 8px 12px; 
+  font-size: 14px; 
+  border: 1px solid #ccc; 
+  border-radius: 6px; 
+  transition: border-color 0.2s;
+}
+input[type="text"]:focus {
+  border-color: #006699;
+  outline: none;
+}
+button { 
+  padding: 8px 16px; 
+  font-size: 14px; 
+  background: #006699; 
+  color: #fff; 
+  border: none; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  transition: background-color 0.2s;
+}
+button:hover { 
+  background: #004466; 
+}
+
+/* Main Layout: Main Content and Sidebar */
+.container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  min-height: calc(100vh - 75px); 
+}
+.main { 
+  flex: 3; 
+  padding: 20px; 
+  overflow-y: auto;
+  min-width: 300px;
+}
+.sidebar { 
+  flex: 2;
+  padding: 20px; 
+  background: #fff; 
+  border-left: 1px solid #dee2e6; 
+  position: sticky; 
+  top: 75px; 
+  height: calc(100vh - 75px); 
+  overflow-y: auto;
+  min-width: 300px;
+}
+
+/* Accordion (Category) Styles */
+details.accordion { 
+  background: #fff; 
+  border-radius: 8px; 
+  margin-bottom: 12px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  border: 1px solid #e9eff3;
+}
+summary.accordion-header { 
+  padding: 16px; 
+  font-weight: bold; 
+  font-size: 1.1em;
+  cursor: pointer; 
+  background: #e9eff3; 
+  border: none; 
+  list-style: none; 
+}
+summary.accordion-header::-webkit-details-marker {
+  display: none;
+}
+.accordion-content { 
+  padding: 16px;
+  border-top: 1px solid #dee2e6;
+}
+.select-all, .clear-all { 
+  margin-right: 10px; 
+  margin-bottom: 15px; 
+  display: inline-block; 
+  background-color: #6c757d;
+}
+.select-all:hover, .clear-all:hover {
+    background-color: #5a6268;
+}
+
+/* Subgroups and Individual Questions */
+.subgroup { 
+  margin-bottom: 20px; 
+}
+.subgroup strong { 
+  display: block; 
+  margin-bottom: 8px; 
+  color: #34495e; 
+  font-size: 1.05em;
+}
+.subgroup div {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+}
+.subgroup input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 4px;
+  min-width: 16px;
+  min-height: 16px;
+}
+
+/* Sidebar Content Styling */
+.sidebar h2 {
+  margin-top: 0;
+}
+.sidebar textarea { 
+  width: 100%; 
+  box-sizing: border-box;
+  min-height: 200px; 
+  padding: 10px; 
+  font-size: 15px; 
+  border: 1px solid #ccc; 
+  border-radius: 6px; 
+  resize: vertical; 
+}
+.counter { 
+  margin-top: 10px; 
+  font-weight: bold; 
+  color: #005a87;
+}
+
+/* Helper and Utility Styles */
+.instructions { 
+  margin-bottom: 20px; 
+  background: #eef5fa; 
+  border-left: 4px solid #006699; 
+  padding: 15px; 
+  border-radius: 4px;
+}
+.highlight { 
+  background-color: #fff3cd; 
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 992px) {
+  .main {
+    flex-basis: 60%;
+  }
+  .sidebar {
+    flex-basis: 40%;
+  }
+}
+@media (max-width: 768px) {
+  .topbar {
+    justify-content: center;
+  }
+  .container { 
+    flex-direction: column; 
+  }
+  .main, .sidebar { 
+    flex-basis: 100%;
+    border-left: none; 
+    border-top: 1px solid #dee2e6; 
+    position: relative; 
+    top: 0; 
+    height: auto; 
+  }
+}
