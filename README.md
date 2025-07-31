@@ -6,7 +6,7 @@ This interactive HTML tool allows users to browse, filter, and select prompts ac
 ## 🔧 How to Use
 
 1. **Open the File**  
-   Download and open `NASDDDS_Selector_Final.html` in any modern web browser (Chrome, Edge, Firefox, Safari).
+   Download and open `[NASDDDS_Selector_Final.html](https://yelsewesley.github.io/nasddds-selector/)` in any modern web browser (Chrome, Edge, Firefox, Safari).
 
 2. **Browse or Filter**  
    - Use the search bar to filter prompts by keyword.
@@ -28,7 +28,7 @@ You can host this tool via GitHub Pages:
 2. Go to your repo’s **Settings** → **Pages**
 3. Under “Source,” choose `main` branch and `/ (root)`
 4. Your tool will be live at:  
-   https://yelsewesley.github.io/nasddds-selector/NASDDDS_Selector_Final.html
+   (https://yelsewesley.github.io/nasddds-selector/)
 
 ## 📁 Contents
 
