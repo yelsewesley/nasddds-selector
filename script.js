@@ -71,7 +71,7 @@ sheet.prompts.forEach(prompt => {
     const isChecked = selectedQuestions.has(id);
     
     div.innerHTML = `
-      <input type="checkbox" id="${id}" data-id="${id}" data-sheet="${sheet.sheet}" data-prompt="${prompt.prompt}" data-index="${index}" ${isChecked ? 'checked' : ''}>
+      <input type="checkbox" id="${id}" data-id="${id}" data-sheet="${sheet.sheet}" data-prompt="${prompt.prompt}" data-question-index="${index}" ${isChecked ? 'checked' : ''}>
       <label for="${id}">${highlightText(question, filterTerm)}</label>
     `;
     subgroup.appendChild(div);
@@ -142,7 +142,7 @@ return null;
   ```
    const sheetName = checkbox.dataset.sheet;
    const promptName = checkbox.dataset.prompt;
-   const questionIndex = parseInt(checkbox.dataset.index, 10);
+   const questionIndex = parseInt(checkbox.dataset.questionIndex, 10);
   
    // Find the actual question text from the data
    const sheetData = allPromptsData.find(s => s.sheet === sheetName);
@@ -164,15 +164,7 @@ return null;
   for (const prompt in groupedSelections[sheet]) {
   summaryText += `  * ${prompt}\n`;
   groupedSelections[sheet][prompt].forEach(q => {
-  // Clean the question text to replace Unicode characters
-  const cleanQuestion = q
-  .replace(/•/g, ‘*’)
-  .replace(/–/g, ‘-’)
-  .replace(/—/g, ‘-’)
-  .replace(/’/g, “’”)
-  .replace(/”/g, ‘”’)
-  .replace(/”/g, ‘”’);
-  summaryText += `     - ${cleanQuestion}\n`;
+  summaryText += `     - ${q}\n`;
   });
   summaryText += ‘\n’;
   }
@@ -203,59 +195,48 @@ return null;
   */
   function exportText() {
   const text = document.getElementById(‘summary’).value;
-  const element = document.createElement(‘a’);
-  const file = new Blob([text], {type: ‘text/plain’});
-  element.href = URL.createObjectURL(file);
-  element.download = ‘selected_questions.txt’;
-  element.style.display = ‘none’;
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-  }
+
+// Create a download using data URL to avoid encoding issues
+const dataStr = “data:text/plain;charset=utf-8,” + encodeURIComponent(text);
+const downloadAnchorNode = document.createElement(‘a’);
+downloadAnchorNode.setAttribute(“href”, dataStr);
+downloadAnchorNode.setAttribute(“download”, “selected_questions.txt”);
+document.body.appendChild(downloadAnchorNode);
+downloadAnchorNode.click();
+document.body.removeChild(downloadAnchorNode);
+}
 
 /**
 
-- Exports the summary as an HTML file that can be opened in Word.
+- Exports the summary as a Word-compatible RTF file.
   */
   function exportDoc() {
   const text = document.getElementById(‘summary’).value;
 
-// Create simple HTML that Word can handle
-const htmlLines = text.split(’\n’).map(line => {
-if (line.startsWith(’— ‘) && line.endsWith(’ —’)) {
-return `<h2>${line}</h2>`;
-} else if (line.trim().startsWith(’*’)) {
-return `<p style="margin-left: 20px;"><strong>${line.trim()}</strong></p>`;
-} else if (line.trim().startsWith(’-’)) {
-return `<p style="margin-left: 40px;">${line.trim()}</p>`;
-} else if (line.trim() === ‘’) {
-return ‘<br>’;
-} else {
-return `<p>${line}</p>`;
-}
-}).join(’\n’);
+// Create RTF format which is more compatible with Word
+let rtfContent = ‘{\rtf1\ansi\deff0 {\fonttbl {\f0 Times New Roman;}}’;
+rtfContent += ’\f0\fs24 ’; // Set font and size
 
-const htmlContent = `<!DOCTYPE html>
+// Convert text to RTF format
+const rtfText = text
+.replace(/\/g, ‘\\’)
+.replace(/{/g, ‘\{’)
+.replace(/}/g, ‘\}’)
+.replace(/\n/g, ’\par ’)
+.replace(/—/g, ‘\b —’)
+.replace(/— /g, ’\b — ’)
+.replace(/ —/g, ’ —\b0 ’);
 
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Selected Questions</title>
-</head>
-<body>
-<h1>Selected Questions</h1>
-${htmlLines}
-</body>
-</html>`;
+rtfContent += rtfText + ‘}’;
 
-const element = document.createElement(‘a’);
-const file = new Blob([htmlContent], {type: ‘text/html’});
-element.href = URL.createObjectURL(file);
-element.download = ‘selected_questions.html’;
-element.style.display = ‘none’;
-document.body.appendChild(element);
-element.click();
-document.body.removeChild(element);
+// Use data URL for download
+const dataStr = “data:application/rtf;charset=utf-8,” + encodeURIComponent(rtfContent);
+const downloadAnchorNode = document.createElement(‘a’);
+downloadAnchorNode.setAttribute(“href”, dataStr);
+downloadAnchorNode.setAttribute(“download”, “selected_questions.rtf”);
+document.body.appendChild(downloadAnchorNode);
+downloadAnchorNode.click();
+document.body.removeChild(downloadAnchorNode);
 }
 
 // — INITIALIZATION AND EVENT LISTENERS —
