@@ -195,56 +195,48 @@ return null;
   */
   function exportText() {
   const text = document.getElementById(‘summary’).value;
-  const blob = new Blob([text], { type: ‘text/plain;charset=utf-8’ });
-  const a = document.createElement(‘a’);
-  a.href = URL.createObjectURL(blob);
-  a.download = ‘selected_questions.txt’;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(a.href);
-  }
+
+// Create a download using data URL to avoid encoding issues
+const dataStr = “data:text/plain;charset=utf-8,” + encodeURIComponent(text);
+const downloadAnchorNode = document.createElement(‘a’);
+downloadAnchorNode.setAttribute(“href”, dataStr);
+downloadAnchorNode.setAttribute(“download”, “selected_questions.txt”);
+document.body.appendChild(downloadAnchorNode);
+downloadAnchorNode.click();
+document.body.removeChild(downloadAnchorNode);
+}
 
 /**
 
-- Exports the summary as a .doc file.
+- Exports the summary as a Word-compatible RTF file.
   */
   function exportDoc() {
   const text = document.getElementById(‘summary’).value;
-  // Convert plain text to HTML with proper line breaks
-  const htmlContent = text
-  .replace(/&/g, ‘&’)
-  .replace(/</g, ‘<’)
-  .replace(/>/g, ‘>’)
-  .replace(/\n/g, ‘<br>\n’);
 
-const html = `<!DOCTYPE html>
+// Create RTF format which is more compatible with Word
+let rtfContent = ‘{\rtf1\ansi\deff0 {\fonttbl {\f0 Times New Roman;}}’;
+rtfContent += ’\f0\fs24 ’; // Set font and size
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Selected Questions</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-        .section-header { font-weight: bold; font-size: 14px; margin-top: 20px; margin-bottom: 10px; }
-        .prompt-item { margin-left: 20px; margin-bottom: 5px; }
-        .question-item { margin-left: 40px; margin-bottom: 3px; }
-    </style>
-</head>
-<body>
-    <h1>Selected Questions</h1>
-    <div>${htmlContent}</div>
-</body>
-</html>`;
+// Convert text to RTF format
+const rtfText = text
+.replace(/\/g, ‘\\’)
+.replace(/{/g, ‘\{’)
+.replace(/}/g, ‘\}’)
+.replace(/\n/g, ’\par ’)
+.replace(/—/g, ‘\b —’)
+.replace(/— /g, ’\b — ’)
+.replace(/ —/g, ’ —\b0 ’);
 
-const blob = new Blob([html], { type: ‘application/msword;charset=utf-8’ });
-const a = document.createElement(‘a’);
-a.href = URL.createObjectURL(blob);
-a.download = ‘selected_questions.doc’;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
-URL.revokeObjectURL(a.href);
+rtfContent += rtfText + ‘}’;
+
+// Use data URL for download
+const dataStr = “data:application/rtf;charset=utf-8,” + encodeURIComponent(rtfContent);
+const downloadAnchorNode = document.createElement(‘a’);
+downloadAnchorNode.setAttribute(“href”, dataStr);
+downloadAnchorNode.setAttribute(“download”, “selected_questions.rtf”);
+document.body.appendChild(downloadAnchorNode);
+downloadAnchorNode.click();
+document.body.removeChild(downloadAnchorNode);
 }
 
 // — INITIALIZATION AND EVENT LISTENERS —
