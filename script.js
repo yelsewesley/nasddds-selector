@@ -191,52 +191,83 @@ return null;
 
 /**
 
+- Cleans text by replacing problematic Unicode characters with ASCII equivalents
+  */
+  function cleanTextForExport(text) {
+  return text
+  .replace(/•/g, ’*’)           // Replace bullet with asterisk
+  .replace(/–/g, ‘-’)           // Replace en-dash with hyphen
+  .replace(/—/g, ‘-’)           // Replace em-dash with hyphen
+  .replace(/’/g, “’”)           // Replace smart apostrophe
+  .replace(/”/g, ‘”’)           // Replace smart quote left
+  .replace(/”/g, ‘”’)           // Replace smart quote right
+  .replace(/…/g, ‘…’)         // Replace ellipsis
+  .replace(/\u00A0/g, ’ ’);     // Replace non-breaking space
+  }
+
+/**
+
 - Exports the summary as a .txt file.
   */
   function exportText() {
-  const text = document.getElementById(‘summary’).value;
+  const originalText = document.getElementById(‘summary’).value;
+  const cleanText = cleanTextForExport(originalText);
 
-// Create a download using data URL to avoid encoding issues
-const dataStr = “data:text/plain;charset=utf-8,” + encodeURIComponent(text);
-const downloadAnchorNode = document.createElement(‘a’);
-downloadAnchorNode.setAttribute(“href”, dataStr);
-downloadAnchorNode.setAttribute(“download”, “selected_questions.txt”);
-document.body.appendChild(downloadAnchorNode);
-downloadAnchorNode.click();
-document.body.removeChild(downloadAnchorNode);
+// Create a simple text file using a different approach
+const element = document.createElement(‘a’);
+const file = new Blob([cleanText], {type: ‘text/plain’});
+element.href = URL.createObjectURL(file);
+element.download = ‘selected_questions.txt’;
+element.style.display = ‘none’;
+document.body.appendChild(element);
+element.click();
+document.body.removeChild(element);
 }
 
 /**
 
-- Exports the summary as a Word-compatible RTF file.
+- Exports the summary as a simple HTML file that can be opened in Word.
   */
   function exportDoc() {
-  const text = document.getElementById(‘summary’).value;
+  const originalText = document.getElementById(‘summary’).value;
+  const cleanText = cleanTextForExport(originalText);
 
-// Create RTF format which is more compatible with Word
-let rtfContent = ‘{\rtf1\ansi\deff0 {\fonttbl {\f0 Times New Roman;}}’;
-rtfContent += ’\f0\fs24 ’; // Set font and size
+// Create simple HTML that Word can handle
+const htmlLines = cleanText.split(’\n’).map(line => {
+if (line.startsWith(’— ‘) && line.endsWith(’ —’)) {
+return `<h2>${line}</h2>`;
+} else if (line.trim().startsWith(’*’)) {
+return `<p style="margin-left: 20px;"><strong>${line.trim()}</strong></p>`;
+} else if (line.trim().startsWith(’-’)) {
+return `<p style="margin-left: 40px;">${line.trim()}</p>`;
+} else if (line.trim() === ‘’) {
+return ‘<br>’;
+} else {
+return `<p>${line}</p>`;
+}
+}).join(’\n’);
 
-// Convert text to RTF format
-const rtfText = text
-.replace(/\/g, ‘\\’)
-.replace(/{/g, ‘\{’)
-.replace(/}/g, ‘\}’)
-.replace(/\n/g, ’\par ’)
-.replace(/—/g, ‘\b —’)
-.replace(/— /g, ’\b — ’)
-.replace(/ —/g, ’ —\b0 ’);
+const htmlContent = `<!DOCTYPE html>
 
-rtfContent += rtfText + ‘}’;
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Selected Questions</title>
+</head>
+<body>
+<h1>Selected Questions</h1>
+${htmlLines}
+</body>
+</html>`;
 
-// Use data URL for download
-const dataStr = “data:application/rtf;charset=utf-8,” + encodeURIComponent(rtfContent);
-const downloadAnchorNode = document.createElement(‘a’);
-downloadAnchorNode.setAttribute(“href”, dataStr);
-downloadAnchorNode.setAttribute(“download”, “selected_questions.rtf”);
-document.body.appendChild(downloadAnchorNode);
-downloadAnchorNode.click();
-document.body.removeChild(downloadAnchorNode);
+const element = document.createElement(‘a’);
+const file = new Blob([htmlContent], {type: ‘text/html’});
+element.href = URL.createObjectURL(file);
+element.download = ‘selected_questions.html’;
+element.style.display = ‘none’;
+document.body.appendChild(element);
+element.click();
+document.body.removeChild(element);
 }
 
 // — INITIALIZATION AND EVENT LISTENERS —
