@@ -64,7 +64,9 @@ function renderUI(filterTerm = '') {
 
       prompt.questions.forEach((question, index) => {
         // Create a unique and stable ID for each question
-        const id = `${sheet.sheet.replace(/\s|&/g, '_')}_${prompt.prompt.replace(/\s|&/g, '_')}_${index}`;
+        const sanitizedSheet = sheet.sheet.replace(/\s|&/g, '_');
+        const sanitizedPrompt = prompt.prompt.replace(/\s|&/g, '_');
+        const id = `${sanitizedSheet}|${sanitizedPrompt}|${index}`;
         const div = document.createElement('div');
         const isChecked = selectedQuestions.has(id);
         
@@ -125,11 +127,10 @@ function updateSummary() {
     const groupedSelections = {};
 
     selectedQuestions.forEach(id => {
-        const parts = id.split('_');
-        const sheetName = parts[0].replace(/_/g, ' ');
-        // Reconstruct prompt name which might contain underscores from being replaced
-        const promptName = parts.slice(1, -1).join('_').replace(/_/g, ' ');
-        const questionIndex = parseInt(parts[parts.length - 1], 10);
+        const [sheetKey, promptKey, questionIndexStr] = id.split('|');
+        const sheetName = sheetKey.replace(/_/g, ' ');
+        const promptName = promptKey.replace(/_/g, ' ');
+        const questionIndex = parseInt(questionIndexStr, 10);
 
         const sheetData = allPromptsData.find(s => s.sheet === sheetName);
         const promptData = sheetData?.prompts.find(p => p.prompt === promptName);
