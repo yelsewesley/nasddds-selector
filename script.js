@@ -5,19 +5,19 @@ let allPromptsData = []; // To cache the data after the first fetch
 /**
 
 - Main function to fetch data (if needed) and render the accordion UI.
-- @param {string} [filterTerm=’’] - An optional term to filter the questions.
+- @param {string} [filterTerm=''] - An optional term to filter the questions.
   */
-  async function loadAndRenderPrompts(filterTerm = ‘’) {
+  async function loadAndRenderPrompts(filterTerm = '') {
   // Fetch data only once and cache it
   if (allPromptsData.length === 0) {
   try {
-  const response = await fetch(‘prompts.json’);
+  const response = await fetch('prompts.json');
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   allPromptsData = await response.json();
   } catch (error) {
-  console.error(‘Error fetching prompts data:’, error);
-  const mainContent = document.getElementById(‘main-content’);
-  mainContent.innerHTML += ‘<p style="color: red;">Error: Could not load questions. Please check the console for details.</p>’;
+  console.error('Error fetching prompts data:', error);
+  const mainContent = document.getElementById('main-content');
+  mainContent.innerHTML += '<p style="color: red;">Error: Could not load questions. Please check the console for details.</p>';
   return;
   }
   }
@@ -29,23 +29,23 @@ let allPromptsData = []; // To cache the data after the first fetch
 - Renders the UI based on the current data and filter term.
 - @param {string} filterTerm - The term to filter questions by.
   */
-  function renderUI(filterTerm = ‘’) {
-  const mainContent = document.getElementById(‘main-content’);
+  function renderUI(filterTerm = '') {
+  const mainContent = document.getElementById('main-content');
   // Clear previous accordions but keep the instructions
-  mainContent.querySelectorAll(’.accordion, .no-results’).forEach(el => el.remove());
+  mainContent.querySelectorAll('.accordion, .no-results').forEach(el => el.remove());
   
   const filteredData = getFilteredData(allPromptsData, filterTerm.toLowerCase());
   
   if (filteredData.length === 0 && filterTerm) {
-  const noResults = document.createElement(‘p’);
-  noResults.textContent = ‘No questions match your filter.’;
-  noResults.className = ‘no-results’;
+  const noResults = document.createElement('p');
+  noResults.textContent = 'No questions match your filter.';
+  noResults.className = 'no-results';
   mainContent.appendChild(noResults);
   }
   
   filteredData.forEach(sheet => {
-  const details = document.createElement(‘details’);
-  details.className = ‘accordion’;
+  const details = document.createElement('details');
+  details.className = 'accordion';
   if (filterTerm) details.open = true;
   
   ```
@@ -120,7 +120,7 @@ let allPromptsData = []; // To cache the data after the first fetch
   */
   function clearAllSelections() {
   selectedQuestions.clear();
-  document.querySelectorAll(‘input[type=“checkbox”]’).forEach(cb => cb.checked = false);
+  document.querySelectorAll('input[type=“checkbox”]').forEach(cb => cb.checked = false);
   updateSummary();
   }
 
@@ -129,7 +129,7 @@ let allPromptsData = []; // To cache the data after the first fetch
 - Updates the summary sidebar with selected questions.
   */
   function updateSummary() {
-  const summaryTextArea = document.getElementById(‘summary’);
+  const summaryTextArea = document.getElementById('summary');
   const groupedSelections = {};
   
   selectedQuestions.forEach(id => {
@@ -156,7 +156,7 @@ let allPromptsData = []; // To cache the data after the first fetch
   
   });
   
-  let summaryText = ‘’;
+  let summaryText = '';
   for (const sheet in groupedSelections) {
   summaryText += `--- ${sheet} ---\n`;
   for (const prompt in groupedSelections[sheet]) {
@@ -164,22 +164,22 @@ let allPromptsData = []; // To cache the data after the first fetch
   groupedSelections[sheet][prompt].forEach(q => {
   // Clean the question text to replace Unicode characters
   const cleanQuestion = q
-  .replace(/•/g, ‘*’)
-  .replace(/–/g, ‘-’)
-  .replace(/—/g, ‘-’)
-  .replace(/’/g, “’”)
-  .replace(/”/g, ‘”’)
-  .replace(/”/g, ‘”’);
+  .replace(/•/g, '*')
+  .replace(/–/g, '-')
+  .replace(/—/g, '-')
+  .replace(/'/g, “'”)
+  .replace(/”/g, '”')
+  .replace(/”/g, '”');
   summaryText += `     - ${cleanQuestion}\n`;
   });
-  summaryText += ‘\n’;
+  summaryText += '\n';
   }
   }
   
   summaryTextArea.value = summaryText.trim();
-  summaryTextArea.style.height = ‘auto’;
+  summaryTextArea.style.height = 'auto';
   summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
-  document.getElementById(‘counter’).textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
+  document.getElementById('counter').textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
   }
 
 /**
@@ -191,8 +191,8 @@ let allPromptsData = []; // To cache the data after the first fetch
   */
   function highlightText(text, term) {
   if (!term) return text;
-  const regex = new RegExp(`(${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, ‘gi’);
-  return text.replace(regex, ‘<span class="highlight">$1</span>’);
+  const regex = new RegExp(`(${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+  return text.replace(regex, '<span class="highlight">$1</span>');
   }
 
 /**
@@ -200,12 +200,12 @@ let allPromptsData = []; // To cache the data after the first fetch
 - Exports the summary as a .txt file.
   */
   function exportText() {
-  const text = document.getElementById(‘summary’).value;
-  const element = document.createElement(‘a’);
-  const file = new Blob([text], {type: ‘text/plain’});
+  const text = document.getElementById('summary').value;
+  const element = document.createElement('a');
+  const file = new Blob([text], {type: 'text/plain'});
   element.href = URL.createObjectURL(file);
-  element.download = ‘selected_questions.txt’;
-  element.style.display = ‘none’;
+  element.download = 'selected_questions.txt';
+  element.style.display = 'none';
   document.body.appendChild(element);
   element.click();
   document.body.removeChild(element);
@@ -216,22 +216,22 @@ let allPromptsData = []; // To cache the data after the first fetch
 - Exports the summary as an HTML file that can be opened in Word.
   */
   function exportDoc() {
-  const text = document.getElementById(‘summary’).value;
+  const text = document.getElementById('summary').value;
   
   // Create simple HTML that Word can handle
-  const htmlLines = text.split(’\n’).map(line => {
-  if (line.startsWith(’—’) && line.endsWith(’—’)) {
+  const htmlLines = text.split('\n').map(line => {
+  if (line.startsWith('—') && line.endsWith('—')) {
   return `<h2>${line}</h2>`;
-  } else if (line.trim().startsWith(’*’)) {
+  } else if (line.trim().startsWith('*')) {
   return `<p style="margin-left: 20px;"><strong>${line.trim()}</strong></p>`;
-  } else if (line.trim().startsWith(’-’)) {
+  } else if (line.trim().startsWith('-')) {
   return `<p style="margin-left: 40px;">${line.trim()}</p>`;
-  } else if (line.trim() === ‘’) {
-  return ‘<br>’;
+  } else if (line.trim() === '') {
+  return '<br>';
   } else {
   return `<p>${line}</p>`;
   }
-  }).join(’\n’);
+  }).join('\n');
   
   const htmlContent = `<!DOCTYPE html>
 
@@ -260,7 +260,7 @@ document.body.removeChild(element);
 }
 
 // — INITIALIZATION AND EVENT LISTENERS —
-document.addEventListener(‘DOMContentLoaded’, () => {
+document.addEventListener('DOMContentLoaded', () => {
 loadAndRenderPrompts(); // Initial render
 
 ```
