@@ -2,6 +2,15 @@
 
 // A Set to keep track of selected question IDs for efficiency
 let selectedQuestions = new Set();
+
+// Persist selections to localStorage
+function saveSelections() {
+  if (selectedQuestions.size === 0) {
+    localStorage.removeItem('selectedQuestions');
+  } else {
+    localStorage.setItem('selectedQuestions', JSON.stringify(Array.from(selectedQuestions)));
+  }
+}
 let allPromptsData = []; // To cache the data after the first fetch
 
 /**
@@ -67,6 +76,11 @@ function renderUI(filterTerm = '') {
         const sheetKey = encodeURIComponent(sheet.sheet);
         const promptKey = encodeURIComponent(prompt.prompt);
         const id = `${sheetKey}|${promptKey}|${index}`;
+=======
+        // Create a unique and stable ID for each question
+        const sanitizedSheet = sheet.sheet.replace(/\s|&/g, '_');
+        const sanitizedPrompt = prompt.prompt.replace(/\s|&/g, '_');
+        const id = `${sanitizedSheet}|${sanitizedPrompt}|${index}`;
         const div = document.createElement('div');
         const isChecked = selectedQuestions.has(id);
         
@@ -116,6 +130,7 @@ function getFilteredData(data, term) {
 function clearAllSelections() {
   selectedQuestions.clear();
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  localStorage.removeItem('selectedQuestions');
   updateSummary();
 }
 
@@ -130,6 +145,9 @@ function updateSummary() {
         const [sheetKey, promptKey, questionIndexStr] = id.split('|');
         const sheetName = decodeURIComponent(sheetKey);
         const promptName = decodeURIComponent(promptKey);
+=======
+        const sheetName = sheetKey.replace(/_/g, ' ');
+        const promptName = promptKey.replace(/_/g, ' ');
         const questionIndex = parseInt(questionIndexStr, 10);
 
         const sheetData = allPromptsData.find(s => s.sheet === sheetName);
@@ -160,6 +178,7 @@ function updateSummary() {
     summaryTextArea.style.height = 'auto';
     summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
     document.getElementById('counter').textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
+    saveSelections();
 }
 
 /**
@@ -207,16 +226,45 @@ function exportDoc() {
   URL.revokeObjectURL(a.href);
 }
 
+/**
+ * Exports the summary as a PDF file using html2pdf.js.
+ */
+function exportPdf() {
+  const text = document.getElementById('summary').value;
+  const container = document.createElement('div');
+  container.style.whiteSpace = 'pre-wrap';
+  container.textContent = text;
+
+  const opt = {
+    margin: 10,
+    filename: 'selected_questions.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(container).save();
+}
+
 // --- INITIALIZATION AND EVENT LISTENERS ---
 document.addEventListener('DOMContentLoaded', () => {
+  const stored = localStorage.getItem('selectedQuestions');
+  if (stored) {
+    try {
+      selectedQuestions = new Set(JSON.parse(stored));
+    } catch (err) {
+      console.error('Failed to parse saved selections', err);
+    }
+  }
   loadAndRenderPrompts(); // Initial render
 
   // Attach listeners to static elements
   const filterInput = document.getElementById('filterInput');
   filterInput.addEventListener('input', () => renderUI(filterInput.value));
-  document.getElementById('exportTextBtn').addEventListener('click', exportText);
-  document.getElementById('exportDocBtn').addEventListener('click', exportDoc);
-  document.getElementById('clearAllGlobal').addEventListener('click', clearAllSelections);
+    document.getElementById('exportTextBtn').addEventListener('click', exportText);
+    document.getElementById('exportDocBtn').addEventListener('click', exportDoc);
+    document.getElementById('exportPdfBtn').addEventListener('click', exportPdf);
+    document.getElementById('clearAllGlobal').addEventListener('click', clearAllSelections);
 
   // Use event delegation for dynamically created elements
   const mainContent = document.getElementById('main-content');
