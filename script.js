@@ -3,6 +3,7 @@
 // A Set to keep track of selected question IDs for efficiency
 let selectedQuestions = new Set();
 let allPromptsData = []; // To cache the data after the first fetch
+let questionDataMap = new Map(); // To store question data against a unique ID
 
 /**
  * Main function to fetch data (if needed) and render the accordion UI.
@@ -15,6 +16,22 @@ async function loadAndRenderPrompts(filterTerm = '') {
       const response = await fetch('prompts.json');
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       allPromptsData = await response.json();
+      //
+      // *** FIX: Create a map of all questions for easy lookup later ***
+      // This is done only once when the data is first loaded.
+      //
+      allPromptsData.forEach((sheet, sheetIndex) => {
+        sheet.prompts.forEach((prompt, promptIndex) => {
+          prompt.questions.forEach((question, questionIndex) => {
+            const id = `q-${sheetIndex}-${promptIndex}-${questionIndex}`;
+            questionDataMap.set(id, {
+              sheet: sheet.sheet,
+              prompt: prompt.prompt,
+              text: question
+            });
+          });
+        });
+      });
     } catch (error) {
       console.error('Error fetching prompts data:', error);
       const mainContent = document.getElementById('main-content');
@@ -31,7 +48,6 @@ async function loadAndRenderPrompts(filterTerm = '') {
  */
 function renderUI(filterTerm = '') {
   const mainContent = document.getElementById('main-content');
-  // Clear previous accordions but keep the instructions
   mainContent.querySelectorAll('.accordion, .no-results').forEach(el => el.remove());
 
   const filteredData = getFilteredData(allPromptsData, filterTerm.toLowerCase());
@@ -43,7 +59,7 @@ function renderUI(filterTerm = '') {
     mainContent.appendChild(noResults);
   }
 
-  filteredData.forEach(sheet => {
+  filteredData.forEach((sheet, sheetIndex) => {
     const details = document.createElement('details');
     details.className = 'accordion';
     if (filterTerm) details.open = true;
@@ -57,14 +73,13 @@ function renderUI(filterTerm = '') {
     content.className = 'accordion-content';
     content.innerHTML = `<button class="select-all">Select All</button><button class="clear-all">Clear All</button>`;
     
-    sheet.prompts.forEach(prompt => {
+    sheet.prompts.forEach((prompt, promptIndex) => {
       const subgroup = document.createElement('div');
       subgroup.className = 'subgroup';
       subgroup.innerHTML = `<strong>${prompt.prompt}</strong>`;
 
-      prompt.questions.forEach((question, index) => {
-        // Create a unique and stable ID for each question
-        const id = `${sheet.sheet.replace(/\s|&/g, '_')}_${prompt.prompt.replace(/\s|&/g, '_')}_${index}`;
+      prompt.questions.forEach((question, questionIndex) => {
+        const id = `q-${sheetIndex}-${promptIndex}-${questionIndex}`;
         const div = document.createElement('div');
         const isChecked = selectedQuestions.has(id);
         
@@ -124,21 +139,17 @@ function updateSummary() {
     const summaryTextArea = document.getElementById('summary');
     const groupedSelections = {};
 
+    // *** FIX: Use the questionDataMap to reliably get question details ***
     selectedQuestions.forEach(id => {
-        const parts = id.split('_');
-        const sheetName = parts[0].replace(/_/g, ' ');
-        // Reconstruct prompt name which might contain underscores from being replaced
-        const promptName = parts.slice(1, -1).join('_').replace(/_/g, ' ');
-        const questionIndex = parseInt(parts[parts.length - 1], 10);
-
-        const sheetData = allPromptsData.find(s => s.sheet === sheetName);
-        const promptData = sheetData?.prompts.find(p => p.prompt === promptName);
-        const questionText = promptData?.questions[questionIndex];
-
-        if (questionText) {
-            if (!groupedSelections[sheetData.sheet]) groupedSelections[sheetData.sheet] = {};
-            if (!groupedSelections[sheetData.sheet][promptData.prompt]) groupedSelections[sheetData.sheet][promptData.prompt] = [];
-            groupedSelections[sheetData.sheet][promptData.prompt].push(questionText);
+        const data = questionDataMap.get(id);
+        if (data) {
+            if (!groupedSelections[data.sheet]) {
+                groupedSelections[data.sheet] = {};
+            }
+            if (!groupedSelections[data.sheet][data.prompt]) {
+                groupedSelections[data.sheet][data.prompt] = [];
+            }
+            groupedSelections[data.sheet][data.prompt].push(data.text);
         }
     });
     
@@ -155,7 +166,6 @@ function updateSummary() {
     }
 
     summaryTextArea.value = summaryText.trim();
-    // Auto-resize textarea
     summaryTextArea.style.height = 'auto';
     summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
     document.getElementById('counter').textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
@@ -169,7 +179,6 @@ function updateSummary() {
  */
 function highlightText(text, term) {
     if (!term) return text;
-    // Escape special characters in the term for the RegExp
     const escapedTerm = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`(${escapedTerm})`, 'gi');
     return text.replace(regex, '<span class="highlight">$1</span>');
@@ -208,16 +217,14 @@ function exportDoc() {
 
 // --- INITIALIZATION AND EVENT LISTENERS ---
 document.addEventListener('DOMContentLoaded', () => {
-  loadAndRenderPrompts(); // Initial render
+  loadAndRenderPrompts();
 
-  // Attach listeners to static elements
   const filterInput = document.getElementById('filterInput');
   filterInput.addEventListener('input', () => renderUI(filterInput.value));
   document.getElementById('exportTextBtn').addEventListener('click', exportText);
   document.getElementById('exportDocBtn').addEventListener('click', exportDoc);
   document.getElementById('clearAllGlobal').addEventListener('click', clearAllSelections);
 
-  // Use event delegation for dynamically created elements
   const mainContent = document.getElementById('main-content');
   mainContent.addEventListener('click', e => {
     const target = e.target;
