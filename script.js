@@ -218,6 +218,26 @@ function exportDoc() {
   URL.revokeObjectURL(a.href);
 }
 
+/**
+ * Exports the summary as a PDF file using html2pdf.js.
+ */
+function exportPdf() {
+  const text = document.getElementById('summary').value;
+  const container = document.createElement('div');
+  container.style.whiteSpace = 'pre-wrap';
+  container.textContent = text;
+
+  const opt = {
+    margin: 10,
+    filename: 'selected_questions.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(container).save();
+}
+
 // --- INITIALIZATION AND EVENT LISTENERS ---
 document.addEventListener('DOMContentLoaded', () => {
   const stored = localStorage.getItem('selectedQuestions');
@@ -233,9 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Attach listeners to static elements
   const filterInput = document.getElementById('filterInput');
   filterInput.addEventListener('input', () => renderUI(filterInput.value));
-  document.getElementById('exportTextBtn').addEventListener('click', exportText);
-  document.getElementById('exportDocBtn').addEventListener('click', exportDoc);
-  document.getElementById('clearAllGlobal').addEventListener('click', clearAllSelections);
+    document.getElementById('exportTextBtn').addEventListener('click', exportText);
+    document.getElementById('exportDocBtn').addEventListener('click', exportDoc);
+    document.getElementById('exportPdfBtn').addEventListener('click', exportPdf);
+    document.getElementById('clearAllGlobal').addEventListener('click', clearAllSelections);
 
   // Use event delegation for dynamically created elements
   const mainContent = document.getElementById('main-content');
