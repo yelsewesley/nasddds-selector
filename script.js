@@ -71,7 +71,7 @@ sheet.prompts.forEach(prompt => {
     const isChecked = selectedQuestions.has(id);
     
     div.innerHTML = `
-      <input type="checkbox" id="${id}" data-id="${id}" data-sheet="${sheet.sheet}" data-prompt="${prompt.prompt}" data-question-index="${index}" ${isChecked ? 'checked' : ''}>
+      <input type="checkbox" id="${id}" data-id="${id}" data-sheet="${sheet.sheet}" data-prompt="${prompt.prompt}" data-index="${index}" ${isChecked ? 'checked' : ''}>
       <label for="${id}">${highlightText(question, filterTerm)}</label>
     `;
     subgroup.appendChild(div);
@@ -142,7 +142,7 @@ return null;
   ```
    const sheetName = checkbox.dataset.sheet;
    const promptName = checkbox.dataset.prompt;
-   const questionIndex = parseInt(checkbox.dataset.questionIndex, 10);
+   const questionIndex = parseInt(checkbox.dataset.index, 10);
   
    // Find the actual question text from the data
    const sheetData = allPromptsData.find(s => s.sheet === sheetName);
@@ -164,24 +164,21 @@ return null;
   for (const prompt in groupedSelections[sheet]) {
   summaryText += `  * ${prompt}\n`;
   groupedSelections[sheet][prompt].forEach(q => {
-  summaryText += `     - ${q}\n`;
+  // Clean the question text to replace Unicode characters
+  const cleanQuestion = q
+  .replace(/•/g, ‘*’)
+  .replace(/–/g, ‘-’)
+  .replace(/—/g, ‘-’)
+  .replace(/’/g, “’”)
+  .replace(/”/g, ‘”’)
+  .replace(/”/g, ‘”’);
+  summaryText += `     - ${cleanQuestion}\n`;
   });
   summaryText += ‘\n’;
   }
   }
   
-  // Clean the text to remove any Unicode characters that might be in the source data
-  const cleanedText = summaryText
-  .replace(/•/g, ‘*’)           // Replace bullet with asterisk
-  .replace(/–/g, ‘-’)           // Replace en-dash with hyphen
-  .replace(/—/g, ‘-’)           // Replace em-dash with hyphen
-  .replace(/’/g, “’”)           // Replace smart apostrophe
-  .replace(/”/g, ‘”’)           // Replace smart quote left
-  .replace(/”/g, ‘”’)           // Replace smart quote right
-  .replace(/…/g, ‘…’)         // Replace ellipsis
-  .replace(/\u00A0/g, ’ ’);     // Replace non-breaking space
-  
-  summaryTextArea.value = cleanedText.trim();
+  summaryTextArea.value = summaryText.trim();
   summaryTextArea.style.height = ‘auto’;
   summaryTextArea.style.height = `${summaryTextArea.scrollHeight}px`;
   document.getElementById(‘counter’).textContent = `${selectedQuestions.size} question${selectedQuestions.size === 1 ? '' : 's'} selected`;
@@ -202,49 +199,29 @@ return null;
 
 /**
 
-- Cleans text by replacing problematic Unicode characters with ASCII equivalents
+- Exports the summary as a .txt file.
   */
-  function cleanTextForExport(text) {
-  return text
-  .replace(/•/g, ’*’)           // Replace bullet with asterisk
-  .replace(/–/g, ‘-’)           // Replace en-dash with hyphen
-  .replace(/—/g, ‘-’)           // Replace em-dash with hyphen
-  .replace(/’/g, “’”)           // Replace smart apostrophe
-  .replace(/”/g, ‘”’)           // Replace smart quote left
-  .replace(/”/g, ‘”’)           // Replace smart quote right
-  .replace(/…/g, ‘…’)         // Replace ellipsis
-  .replace(/\u00A0/g, ’ ’);     // Replace non-breaking space
+  function exportText() {
+  const text = document.getElementById(‘summary’).value;
+  const element = document.createElement(‘a’);
+  const file = new Blob([text], {type: ‘text/plain’});
+  element.href = URL.createObjectURL(file);
+  element.download = ‘selected_questions.txt’;
+  element.style.display = ‘none’;
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
   }
 
 /**
 
-- Exports the summary as a .txt file.
-  */
-  function exportText() {
-  const originalText = document.getElementById(‘summary’).value;
-  const cleanText = cleanTextForExport(originalText);
-
-// Create a simple text file using a different approach
-const element = document.createElement(‘a’);
-const file = new Blob([cleanText], {type: ‘text/plain’});
-element.href = URL.createObjectURL(file);
-element.download = ‘selected_questions.txt’;
-element.style.display = ‘none’;
-document.body.appendChild(element);
-element.click();
-document.body.removeChild(element);
-}
-
-/**
-
-- Exports the summary as a simple HTML file that can be opened in Word.
+- Exports the summary as an HTML file that can be opened in Word.
   */
   function exportDoc() {
-  const originalText = document.getElementById(‘summary’).value;
-  const cleanText = cleanTextForExport(originalText);
+  const text = document.getElementById(‘summary’).value;
 
 // Create simple HTML that Word can handle
-const htmlLines = cleanText.split(’\n’).map(line => {
+const htmlLines = text.split(’\n’).map(line => {
 if (line.startsWith(’— ‘) && line.endsWith(’ —’)) {
 return `<h2>${line}</h2>`;
 } else if (line.trim().startsWith(’*’)) {
