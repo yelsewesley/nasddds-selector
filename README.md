@@ -17,8 +17,9 @@ This interactive HTML tool allows users to browse, filter, and select prompts ac
    - Use “Select All” or “Clear All” buttons in each section as needed.
    - The sidebar shows selected questions grouped by section and category.
 
-4. **Export Your Summary**  
-   - Use the “Export Word” or “Export PDF” buttons to save your selections.
+4. **Export Your Summary**
+   - Use the “Export Text,” “Export Word,” or “Export PDF” buttons to save your selections.
+   - The PDF option uses the lightweight `html2pdf.js` library to generate a PDF of the summary textbox.
 
 ## 💻 GitHub Deployment (Optional)
 
